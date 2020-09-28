@@ -24,6 +24,6 @@ public class Point {
         Point p1 = new Point(5,5);
         Point p2 = new Point( 3,3);
 
-        System.out.println("Distance is " + distance(p1,p2));
+        System.out.println("Distance is " + distance(p1, p2));
     }
 }
