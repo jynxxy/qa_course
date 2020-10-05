@@ -2,11 +2,10 @@ package ru.stqa.pft.addressbook;
 
 import java.util.concurrent.TimeUnit;
 import org.testng.annotations.*;
-import static org.testng.Assert.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class UserCreationTests {
+public class ContactCreationTests {
   FirefoxDriver wd;
 
   @BeforeMethod(alwaysRun = true)
@@ -17,24 +16,24 @@ public class UserCreationTests {
   }
 
   @Test
-  public void testUserCreationTests() throws Exception {
+  public void testContactCreation() throws Exception {
     goToAddNewEntry();
-    fillAddressBook();
+    fillAddressBook(new ContactData("name", "surname", "123456789", "test@test.com"));
   }
 
-  private void fillAddressBook() {
+  private void fillAddressBook(ContactData contactData) {
     wd.findElement(By.name("firstname")).click();
     wd.findElement(By.name("firstname")).clear();
-    wd.findElement(By.name("firstname")).sendKeys("name");
+    wd.findElement(By.name("firstname")).sendKeys(contactData.getContactName());
     wd.findElement(By.name("lastname")).click();
     wd.findElement(By.name("lastname")).clear();
-    wd.findElement(By.name("lastname")).sendKeys("surname");
+    wd.findElement(By.name("lastname")).sendKeys(contactData.getContactSurname());
     wd.findElement(By.name("home")).click();
     wd.findElement(By.name("home")).clear();
-    wd.findElement(By.name("home")).sendKeys("123456789");
+    wd.findElement(By.name("home")).sendKeys(contactData.getPhone());
     wd.findElement(By.name("email")).click();
     wd.findElement(By.name("email")).clear();
-    wd.findElement(By.name("email")).sendKeys("test@test.com");
+    wd.findElement(By.name("email")).sendKeys(contactData.getEmail());
     wd.findElement(By.xpath("(//input[@name='submit'])[2]")).click();
   }
 
