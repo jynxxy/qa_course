@@ -7,8 +7,8 @@ public class ContactCreationTests extends TestBase {
 
     @Test
     public void testContactCreation() throws Exception {
-        app.goToAddNewEntry();
-        app.fillAddressBook(new ContactData("name", "surname", "123456789", "test@test.com"));
+        app.getNavigationHelper().goToAddNewEntry();
+        app.getGroupHelper().fillAddressBook(new ContactData("name", "surname", "123456789", "test@test.com"));
     }
 
 }
