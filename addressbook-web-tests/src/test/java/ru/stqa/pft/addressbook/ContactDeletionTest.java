@@ -6,7 +6,7 @@ public class ContactDeletionTest extends TestBase {
 
 
     @Test
-    public void testUserDeletion() throws Exception {
+    public void testUserDeletion() {
 
         selectContact();
         deleteContact();

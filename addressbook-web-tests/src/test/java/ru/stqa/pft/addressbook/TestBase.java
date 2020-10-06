@@ -100,11 +100,13 @@ public class TestBase {
         wd.findElement(By.name("selected[]")).click();
     }
 
-    protected void deleteContact() {
-        wd.findElement(By.xpath("//input[@value='Delete']")).click();
+    protected void selectContact() {
+        wd.findElement(By.xpath("//input[@type='checkbox']")).click();
     }
 
-    protected void selectContact() {
-        wd.findElement(By.id("4")).click();
+    protected void deleteContact() {
+        wd.findElement(By.xpath("//input[@value='Delete']")).click();
+        wd.switchTo().alert().accept();
     }
+
 }
