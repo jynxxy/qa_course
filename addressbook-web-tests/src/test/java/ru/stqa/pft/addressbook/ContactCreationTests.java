@@ -9,14 +9,14 @@ public class ContactCreationTests {
   FirefoxDriver wd;
 
   @BeforeMethod(alwaysRun = true)
-  public void setUp() throws Exception {
+  public void setUp() {
     wd = new FirefoxDriver();
     wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     login();
   }
 
   @Test
-  public void testContactCreation() throws Exception {
+  public void testContactCreation() {
     goToAddNewEntry();
     fillAddressBook(new ContactData("name", "surname", "123456789", "test@test.com"));
   }
