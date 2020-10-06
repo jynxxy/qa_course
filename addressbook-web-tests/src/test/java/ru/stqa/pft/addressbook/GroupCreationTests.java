@@ -1,6 +1,5 @@
 package ru.stqa.pft.addressbook;
 
-<<<<<<< HEAD
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
@@ -32,14 +31,6 @@ public class GroupCreationTests {
 
   @Test
   public void testGroupCreation() throws Exception {
-=======
-import org.testng.annotations.Test;
-
-public class GroupCreationTests extends TestBase {
-
-  @Test
-  public void testGroupCreation() {
->>>>>>> parent of db02edc... Converting inheritance to delegation and creating a two-tier architecture
     goToGroupPage();
     initGroupCreation();
     fillGroupForm(new GroupData("test1", "test2", "test3"));
@@ -47,7 +38,6 @@ public class GroupCreationTests extends TestBase {
     returnToGroupPage();
   }
 
-<<<<<<< HEAD
   private void returnToGroupPage() {
     wd.findElement(By.linkText("group page")).click();
   }
@@ -80,6 +70,4 @@ public class GroupCreationTests extends TestBase {
   public void tearDown() throws Exception {
     wd.quit();
   }
-=======
->>>>>>> parent of db02edc... Converting inheritance to delegation and creating a two-tier architecture
 }
