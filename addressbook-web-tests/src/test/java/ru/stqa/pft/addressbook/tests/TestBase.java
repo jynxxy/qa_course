@@ -17,8 +17,5 @@ public class TestBase {
     public void tearDown() throws Exception {
         app.stop();
     }
-
-    public ApplicationManager getApp() {
-        return app;
-    }
+    
 }
