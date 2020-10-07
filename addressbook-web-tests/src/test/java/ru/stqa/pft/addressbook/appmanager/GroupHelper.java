@@ -2,7 +2,6 @@ package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.GroupData;
 
 public class GroupHelper extends HelperBase {
@@ -29,29 +28,12 @@ public class GroupHelper extends HelperBase {
         click(By.name("new"));
     }
 
-    public void fillAddressBook(ContactData contactData) {
-        type(By.name("firstname"), contactData.getContactName());
-        type(By.name("lastname"), contactData.getContactSurname());
-        type(By.name("home"), contactData.getPhone());
-        type(By.name("email"), contactData.getEmail());
-        click(By.xpath("(//input[@name='submit'])[2]"));
-    }
-
     public void deleteSelectedGroups() {
         click(By.name("delete"));
     }
 
     public void selectGroup() {
         click(By.name("selected[]"));
-    }
-
-    public void selectContact() {
-        click(By.xpath("//input[@type='checkbox']"));
-    }
-
-    public void deleteContact() {
-        click(By.xpath("//input[@value='Delete']"));
-        wd.switchTo().alert().accept();
     }
 
     public void initGroupModification() {
@@ -61,4 +43,5 @@ public class GroupHelper extends HelperBase {
     public void submitGroupModification() {
         click(By.name("update"));
     }
+
 }
