@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ru.stqa.pft.addressbook.tests.ContactDeletionTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-10-12T11:24:51" hostname="LAPTOP-0GT75JCF" time="0.395">
+  <properties/>
+  <testcase name="testUserDeletion" classname="ru.stqa.pft.addressbook.tests.ContactDeletionTests" time="0.395"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[1602501887502	geckodriver	INFO	Listening on 127.0.0.1:22465
+1602501887995	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\jahba\\AppData\\Local\\Temp\\rust_mozprofile67r8Hm"
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+console.error: SearchCache: "_readCacheFile: Error reading cache file:" (new Error("", "(unknown module)"))
+1602501890129	Marionette	INFO	Listening on port 6725
+1602501890154	Marionette	WARN	TLS certificate errors will be ignored for this session
+Oct 12, 2020 1:24:50 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: W3C
+1602501891556	Marionette	INFO	Stopped listening on port 6725
+[Parent 21240, Gecko_IOThread] WARNING: file /builds/worker/checkouts/gecko/ipc/chromium/src/base/process_util_win.cc, line 166
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+
+]]></system-err>
+</testsuite>

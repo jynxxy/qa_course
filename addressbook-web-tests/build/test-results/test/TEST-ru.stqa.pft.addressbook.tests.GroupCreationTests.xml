@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="ru.stqa.pft.addressbook.tests.GroupCreationTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-10-12T10:16:17" hostname="LAPTOP-0GT75JCF" time="0.939">
+<testsuite name="ru.stqa.pft.addressbook.tests.GroupCreationTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-10-12T11:25:03" hostname="LAPTOP-0GT75JCF" time="1.356">
   <properties/>
-  <testcase name="testGroupCreation" classname="ru.stqa.pft.addressbook.tests.GroupCreationTests" time="0.939"/>
+  <testcase name="testGroupCreation" classname="ru.stqa.pft.addressbook.tests.GroupCreationTests" time="1.356"/>
   <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
-SLF4J: Defaulting to no-operation (NOP) logger implementation
-SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
-Starting ChromeDriver 86.0.4240.22 (398b0743353ff36fb1b82468f63a3a93b4e2e89e-refs/branch-heads/4240@{#378}) on port 24020
-Only local connections are allowed.
-Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
-ChromeDriver was started successfully.
-Oct 12, 2020 12:16:16 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+  <system-err><![CDATA[1602501899376	geckodriver	INFO	Listening on 127.0.0.1:28997
+1602501899886	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\jahba\\AppData\\Local\\Temp\\rust_mozprofileLBPmOi"
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+console.error: SearchCache: "_readCacheFile: Error reading cache file:" (new Error("", "(unknown module)"))
+1602501902079	Marionette	INFO	Listening on port 6821
+1602501902553	Marionette	WARN	TLS certificate errors will be ignored for this session
+Oct 12, 2020 1:25:02 PM org.openqa.selenium.remote.ProtocolHandshake createSession
 INFO: Detected dialect: W3C
+1602501904815	Marionette	INFO	Stopped listening on port 6821
+
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+
 ]]></system-err>
 </testsuite>

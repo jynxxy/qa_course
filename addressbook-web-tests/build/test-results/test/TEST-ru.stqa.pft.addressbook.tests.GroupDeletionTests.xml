@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ru.stqa.pft.addressbook.tests.GroupDeletionTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-10-12T11:25:10" hostname="LAPTOP-0GT75JCF" time="0.601">
+  <properties/>
+  <testcase name="testGroupDeletion" classname="ru.stqa.pft.addressbook.tests.GroupDeletionTests" time="0.601"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[1602501905984	geckodriver	INFO	Listening on 127.0.0.1:5748
+1602501906479	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\jahba\\AppData\\Local\\Temp\\rust_mozprofileL3kgSG"
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+console.error: SearchCache: "_readCacheFile: Error reading cache file:" (new Error("", "(unknown module)"))
+1602501908641	Marionette	INFO	Listening on port 6871
+1602501909136	Marionette	WARN	TLS certificate errors will be ignored for this session
+Oct 12, 2020 1:25:09 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: W3C
+1602501910651	Marionette	INFO	Stopped listening on port 6871
+JavaScript error: resource://gre/modules/UrlClassifierListManager.jsm, line 691: TypeError: this.tablesData[table] is undefined
+
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+
+]]></system-err>
+</testsuite>

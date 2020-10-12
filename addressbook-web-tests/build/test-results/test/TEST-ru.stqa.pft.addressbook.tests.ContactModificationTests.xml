@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ru.stqa.pft.addressbook.tests.ContactModificationTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-10-12T11:24:56" hostname="LAPTOP-0GT75JCF" time="1.424">
+  <properties/>
+  <testcase name="testContactModification" classname="ru.stqa.pft.addressbook.tests.ContactModificationTests" time="1.424"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[1602501892647	geckodriver	INFO	Listening on 127.0.0.1:15829
+1602501893151	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\jahba\\AppData\\Local\\Temp\\rust_mozprofileuXbFz6"
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+console.error: SearchCache: "_readCacheFile: Error reading cache file:" (new Error("", "(unknown module)"))
+1602501895382	Marionette	INFO	Listening on port 6773
+1602501895806	Marionette	WARN	TLS certificate errors will be ignored for this session
+Oct 12, 2020 1:24:55 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: W3C
+1602501898190	Marionette	INFO	Stopped listening on port 6773
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+
+]]></system-err>
+</testsuite>
