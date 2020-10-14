@@ -46,4 +46,8 @@ public class ContactHelper extends HelperBase {
     public void submitContactModification() {
         click(By.name("update"));
     }
+
+    public void returnToHomePage() {
+        click(By.xpath("//a[contains(text(),'home')]"));
+    }
 }
