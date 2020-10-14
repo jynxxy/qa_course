@@ -29,9 +29,8 @@ public class GroupHelper extends HelperBase {
 
         if (creation) {
             WebElement test = wd.findElement(By.name("submit"));
-//            System.out.println("widze");
-            String dupa = test.getAttribute("value");
-            System.out.println(dupa);
+            String value = test.getAttribute("value");
+            System.out.println(value);
         } else {
             Assert.assertFalse(isElementPresent(By.name("submit")));
         }
