@@ -30,8 +30,10 @@ public class ContactHelper extends HelperBase {
         click(By.name("submit"));
     }
 
-    public void selectContact() {
-        click(By.xpath("//input[@type='checkbox']"));
+    public void selectContact(int index) {
+//        click(By.xpath("//input[@type='checkbox']"));                                 << old
+//          wd.findElements(By.xpath("//input[@class='center'] | //*[@name='selected[]']"));
+        wd.findElements(By.xpath("//input[@type='checkbox']")).get(index).click();  //<< work with this
     }
 
     public void deleteContact() {
