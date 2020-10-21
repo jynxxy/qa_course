@@ -36,7 +36,7 @@ public class ContactHelper extends HelperBase {
 
     public void selectContact(int index) {
 //        click(By.xpath("//input[@type='checkbox']"));                                 << old
-//          wd.findElements(By.xpath("//input[@class='center'] | //*[@name='selected[]']"));
+
         wd.findElements(By.xpath("//input[@name='selected[]']")).get(index).click();  //<< work with this
     }
 
@@ -77,12 +77,16 @@ public class ContactHelper extends HelperBase {
     }
 
     public List<ContactData> getContactList() {
-        List<ContactData> contacts = new ArrayList<ContactData>();
-        List<WebElement> elements = wd.findElements(By.xpath("//input[@name='selected[]']"));
+        List<ContactData> contacts = new ArrayList<>();
+        List<WebElement> elements = wd.findElements(By.xpath("//*[@name='entry']"));
         for (WebElement element : elements) {
-            String contactname = element.getText();
-            String contactsurname = element.getText();
-            String id = element.findElement(By.xpath("//input[@name='selected[]']")).getAttribute("value");
+
+            String id = element.findElement(By.tagName("input")).getAttribute("value");
+
+
+            String contactname = element.findElement(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[2]")).getText();
+            String contactsurname = element.findElement(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[3]")).getText();
+
             ContactData contact = new ContactData(id, contactname, contactsurname,null, null, null);
             contacts.add(contact);
         }
