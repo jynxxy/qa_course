@@ -1,7 +1,6 @@
 package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -46,7 +45,7 @@ public class ContactHelper extends HelperBase {
     }
 
     public void initContactModification() {
-        click(By.xpath("//img[@title='Edit']"));
+        click(By.xpath("//*[@id='maintable']/tbody/tr['+ index+ ']/td[8]/a/img"));
     }
 
     public void submitContactModification() {
@@ -82,9 +81,10 @@ public class ContactHelper extends HelperBase {
         for (WebElement element : elements) {
 
             String id = element.findElement(By.tagName("input")).getAttribute("value");
-            String contactname = element.findElement(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[3]")).getText();
-            String contactsurname = element.findElement(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[2]")).getText();
-
+//            String contactname = element.findElement(By.xpath("./td[3]")).getText();
+//            String contactsurname = element.findElement(By.xpath("./td[2]")).getText();
+            String contactname = element.findElement(By.xpath("//*[@id='maintable']/tbody/tr['+index+']/td[3]")).getText();
+            String contactsurname = element.findElement(By.xpath("//*[@id='maintable']/tbody/tr['+index+']/td[2]")).getText();
             ContactData contact = new ContactData(id, contactname, contactsurname,null, null, null);
             contacts.add(contact);
         }
