@@ -45,7 +45,8 @@ public class ContactHelper extends HelperBase {
     }
 
     public void initContactModification() {
-        click(By.xpath("//*[@id='maintable']/tbody/tr['+ index+ ']/td[8]/a/img"));
+//        click(By.xpath("//*[@id='maintable']/tbody/tr['+ index+ ']/td[8]/a/img"));
+        click(By.xpath("(//*[@title='Edit'])[last()-1]"));
     }
 
     public void submitContactModification() {
@@ -78,13 +79,13 @@ public class ContactHelper extends HelperBase {
     public List<ContactData> getContactList() {
         List<ContactData> contacts = new ArrayList<>();
         List<WebElement> elements = wd.findElements(By.xpath("//*[@name='entry']"));
+        List<WebElement> cells = wd.findElements(By.tagName("td"));
         for (WebElement element : elements) {
 
             String id = element.findElement(By.tagName("input")).getAttribute("value");
-//            String contactname = element.findElement(By.xpath("./td[3]")).getText();
-//            String contactsurname = element.findElement(By.xpath("./td[2]")).getText();
-            String contactname = element.findElement(By.xpath("//*[@id='maintable']/tbody/tr['+index+']/td[3]")).getText();
-            String contactsurname = element.findElement(By.xpath("//*[@id='maintable']/tbody/tr['+index+']/td[2]")).getText();
+            String contactname = cells.get(2).getText();
+            String contactsurname = cells.get(1).getText();
+
             ContactData contact = new ContactData(id, contactname, contactsurname,null, null, null);
             contacts.add(contact);
         }
