@@ -85,7 +85,7 @@ public class ContactHelper extends HelperBase {
         for (WebElement row : rows) {
 
             List<WebElement> cells = row.findElements(By.tagName("td"));
-            String id = row.findElement(By.tagName("input")).getAttribute("value");
+            int id = Integer.parseInt(row.findElement(By.tagName("input")).getAttribute("value"));
             String contactname = cells.get(2).getText();
             String contactsurname = cells.get(1).getText();
 
