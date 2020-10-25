@@ -7,7 +7,6 @@ public class GroupData {
     private final String footer;
 
 
-
     public GroupData(String name, String header, String footer) {
         this.id = Integer.MAX_VALUE;
         this.name = name;

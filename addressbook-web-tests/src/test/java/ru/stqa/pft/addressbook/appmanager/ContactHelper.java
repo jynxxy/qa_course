@@ -71,7 +71,7 @@ public class ContactHelper extends HelperBase {
     }
 
     public boolean isThereAContact() {
-        return  isElementPresent(By.name("selected[]"));
+        return isElementPresent(By.name("selected[]"));
     }
 
     public int getContactCount() {
@@ -89,7 +89,7 @@ public class ContactHelper extends HelperBase {
             String contactname = cells.get(2).getText();
             String contactsurname = cells.get(1).getText();
 
-            ContactData contact = new ContactData(id, contactname, contactsurname,null, null, null);
+            ContactData contact = new ContactData(id, contactname, contactsurname, null, null, null);
             contacts.add(contact);
         }
         return contacts;
