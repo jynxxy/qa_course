@@ -25,7 +25,11 @@ public class NavigationHelper extends HelperBase {
         click(By.linkText("home"));
     }
 
-    public void goToAddNewEntry() {
+    public void AddNewContact() {
         click(By.linkText("add new"));
+    }
+
+    public boolean contactPage() {
+        return isElementPresent(By.name("selected[]"));
     }
 }
