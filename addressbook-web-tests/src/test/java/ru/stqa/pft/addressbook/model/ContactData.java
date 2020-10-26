@@ -24,13 +24,15 @@ public class ContactData {
 
         ContactData that = (ContactData) o;
 
+        if (id != that.id) return false;
         if (contactname != null ? !contactname.equals(that.contactname) : that.contactname != null) return false;
         return contactsurname != null ? contactsurname.equals(that.contactsurname) : that.contactsurname == null;
     }
 
     @Override
     public int hashCode() {
-        int result = contactname != null ? contactname.hashCode() : 0;
+        int result = id;
+        result = 31 * result + (contactname != null ? contactname.hashCode() : 0);
         result = 31 * result + (contactsurname != null ? contactsurname.hashCode() : 0);
         return result;
     }
