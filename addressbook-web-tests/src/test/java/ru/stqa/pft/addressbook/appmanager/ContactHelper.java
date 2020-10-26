@@ -78,7 +78,11 @@ public class ContactHelper extends HelperBase {
         returnToHomePage();
     }
 
-
+    public void delete(int index) {
+        selectContact(index);
+        deleteContact();
+        returnToHomePage();
+    }
 
     public int getContactCount() {
         return wd.findElements(By.name("selected[]")).size();
@@ -95,15 +99,10 @@ public class ContactHelper extends HelperBase {
             String contactname = cells.get(2).getText();
             String contactsurname = cells.get(1).getText();
 
-            ContactData contact = new ContactData(id, contactname, contactsurname, null, null, null);
-            contacts.add(contact);
+//            ContactData contact = new ContactData().withId(id).withContactname(contactname).withContactsurname(contactsurname);
+            contacts.add(new ContactData().withId(id).withContactname(contactname).withContactsurname(contactsurname));
         }
         return contacts;
     }
 
-    public void delete(int index) {
-        selectContact(index);
-        deleteContact();
-        returnToHomePage();
-    }
 }
