@@ -90,9 +90,9 @@ public class ContactHelper extends HelperBase {
         for (WebElement row : rows) {
             List<WebElement> cells = row.findElements(By.tagName("td"));
             int id = Integer.parseInt(row.findElement(By.tagName("input")).getAttribute("value"));
-            String contactname = cells.get(2).getText();
-            String contactsurname = cells.get(1).getText();
-            contacts.add(new ContactData().withId(id).withContactname(contactname).withContactsurname(contactsurname));
+            String firstname = cells.get(2).getText();
+            String lastname = cells.get(1).getText();
+            contacts.add(new ContactData().withId(id).withContactname(firstname).withContactsurname(lastname));
         }
         return contacts;
     }

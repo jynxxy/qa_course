@@ -2,8 +2,8 @@ package ru.stqa.pft.addressbook.model;
 
 public class ContactData {
     private int id = Integer.MAX_VALUE;
-    private String contactname;
-    private String contactsurname;
+    private String firstname;
+    private String lastname;
     private String home;
     private String mobile;
     private String work;
@@ -14,8 +14,8 @@ public class ContactData {
     public String toString() {
         return "ContactData{" +
                 "id='" + id + '\'' +
-                ", contactname='" + contactname + '\'' +
-                ", contactsurname='" + contactsurname + '\'' +
+                ", contactname='" + firstname + '\'' +
+                ", contactsurname='" + lastname + '\'' +
                 '}';
     }
 
@@ -27,15 +27,15 @@ public class ContactData {
         ContactData that = (ContactData) o;
 
         if (id != that.id) return false;
-        if (contactname != null ? !contactname.equals(that.contactname) : that.contactname != null) return false;
-        return contactsurname != null ? contactsurname.equals(that.contactsurname) : that.contactsurname == null;
+        if (firstname != null ? !firstname.equals(that.firstname) : that.firstname != null) return false;
+        return lastname != null ? lastname.equals(that.lastname) : that.lastname == null;
     }
 
     @Override
     public int hashCode() {
         int result = id;
-        result = 31 * result + (contactname != null ? contactname.hashCode() : 0);
-        result = 31 * result + (contactsurname != null ? contactsurname.hashCode() : 0);
+        result = 31 * result + (firstname != null ? firstname.hashCode() : 0);
+        result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
         return result;
     }
 
@@ -44,11 +44,11 @@ public class ContactData {
     }
 
     public String getContactName() {
-        return contactname;
+        return firstname;
     }
 
     public String getContactSurname() {
-        return contactsurname;
+        return lastname;
     }
 
     public String getHome() {
@@ -69,12 +69,12 @@ public class ContactData {
     }
 
     public ContactData withContactname(String contactname) {
-        this.contactname = contactname;
+        this.firstname = contactname;
         return this;
     }
 
     public ContactData withContactsurname(String contactsurname) {
-        this.contactsurname = contactsurname;
+        this.lastname = contactsurname;
         return this;
     }
 
