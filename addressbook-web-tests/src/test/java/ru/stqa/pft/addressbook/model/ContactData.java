@@ -43,16 +43,24 @@ public class ContactData {
         return id;
     }
 
-    public String getContactName() {
+    public String getFirstName() {
         return firstname;
     }
 
-    public String getContactSurname() {
+    public String getLastName() {
         return lastname;
     }
 
-    public String getHome() {
+    public String getHomePhone() {
         return home;
+    }
+
+    public String getMobilePhone() {
+        return mobile;
+    }
+
+    public String getWorkPhone() {
+        return work;
     }
 
     public String getEmail() {
@@ -68,12 +76,12 @@ public class ContactData {
         return this;
     }
 
-    public ContactData withContactname(String contactname) {
+    public ContactData withFirstName(String contactname) {
         this.firstname = contactname;
         return this;
     }
 
-    public ContactData withContactsurname(String contactsurname) {
+    public ContactData withLastName(String contactsurname) {
         this.lastname = contactsurname;
         return this;
     }
