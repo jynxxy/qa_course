@@ -19,7 +19,7 @@ public class ContactHelper extends HelperBase {
     public void fillContactForm(ContactData contactData, boolean creation) {
         type(By.name("firstname"), contactData.getContactName());
         type(By.name("lastname"), contactData.getContactSurname());
-        type(By.name("home"), contactData.getPhone());
+        type(By.name("home"), contactData.getHome());
         type(By.name("email"), contactData.getEmail());
 
         if (creation) {
@@ -105,11 +105,12 @@ public class ContactHelper extends HelperBase {
         String mobile = wd.findElement(By.name("mobile")).getAttribute("value");
         String work = wd.findElement(By.name("work")).getAttribute("value");
         wd.navigate().back();
-        return new ContactData().withId(contact.getId()).withContactname(firstname).withContactsurname(lastname).withPhone(home);
+        return new ContactData().withId(contact.getId()).withContactname(firstname).
+                withContactsurname(lastname).withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work);
     }
 
     private void initContactModificationById(int id) {
-        WebElement checkbox = wd.findElement(By.cssSelector(String.format("input[value=0s']", id)));
+        WebElement checkbox = wd.findElement(By.cssSelector(String.format("input[value=%s']", id)));
         WebElement row = wd.findElement(By.xpath("./../.."));
         List<WebElement> cells = row.findElements(By.tagName("td"));
         cells.get(7).findElement(By.tagName("a")).click();

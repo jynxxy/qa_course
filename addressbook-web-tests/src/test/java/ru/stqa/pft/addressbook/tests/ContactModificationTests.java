@@ -16,7 +16,7 @@ public class ContactModificationTests extends TestBase {
         if (!app.goTo().contactPage()) {
             app.contact().create(new ContactData().
                     withContactname("name3").withContactsurname("surname").
-                    withPhone("444").withEmail("test@test.com").withGroup("test1"));
+                    withHomePhone("444").withEmail("test@test.com").withGroup("test1"));
         }
     }
 
