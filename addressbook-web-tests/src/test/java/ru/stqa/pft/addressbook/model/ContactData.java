@@ -1,31 +1,12 @@
 package ru.stqa.pft.addressbook.model;
 
 public class ContactData {
-    private int id;
-    private final String contactname;
-    private final String contactsurname;
-    private final String phone;
-    private final String email;
+    private int id = Integer.MAX_VALUE;
+    private String contactname;
+    private String contactsurname;
+    private String phone;
+    private String email;
     private String group;
-
-
-    public ContactData(String contactname, String contactsurname, String phone, String email, String group) {
-        this.id = Integer.MAX_VALUE;
-        this.contactname = contactname;
-        this.contactsurname = contactsurname;
-        this.phone = phone;
-        this.email = email;
-        this.group = group;
-    }
-
-    public ContactData(int id, String contactname, String contactsurname, String phone, String email, String group) {
-        this.id = id;
-        this.contactname = contactname;
-        this.contactsurname = contactsurname;
-        this.phone = phone;
-        this.email = email;
-        this.group = group;
-    }
 
     @Override
     public String toString() {
@@ -35,6 +16,7 @@ public class ContactData {
                 ", contactsurname='" + contactsurname + '\'' +
                 '}';
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -42,13 +24,15 @@ public class ContactData {
 
         ContactData that = (ContactData) o;
 
+        if (id != that.id) return false;
         if (contactname != null ? !contactname.equals(that.contactname) : that.contactname != null) return false;
         return contactsurname != null ? contactsurname.equals(that.contactsurname) : that.contactsurname == null;
     }
 
     @Override
     public int hashCode() {
-        int result = contactname != null ? contactname.hashCode() : 0;
+        int result = id;
+        result = 31 * result + (contactname != null ? contactname.hashCode() : 0);
         result = 31 * result + (contactsurname != null ? contactsurname.hashCode() : 0);
         return result;
     }
@@ -56,7 +40,6 @@ public class ContactData {
     public int getId() {
         return id;
     }
-
 
     public String getContactName() {
         return contactname;
@@ -78,7 +61,34 @@ public class ContactData {
         return group;
     }
 
-    public void setId(int id) {
+    public ContactData withId(int id) {
         this.id = id;
+        return this;
     }
+
+    public ContactData withContactname(String contactname) {
+        this.contactname = contactname;
+        return this;
+    }
+
+    public ContactData withContactsurname(String contactsurname) {
+        this.contactsurname = contactsurname;
+        return this;
+    }
+
+    public ContactData withPhone(String phone) {
+        this.phone = phone;
+        return this;
+    }
+
+    public ContactData withEmail(String email) {
+        this.email = email;
+        return this;
+    }
+
+    public ContactData withGroup(String group) {
+        this.group = group;
+        return this;
+    }
+
 }
