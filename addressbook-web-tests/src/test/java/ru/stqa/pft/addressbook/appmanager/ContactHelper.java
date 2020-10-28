@@ -70,8 +70,7 @@ public class ContactHelper extends HelperBase {
         selectContactById(contact.getId());
         initContactModificationById(contact.getId());
         fillContactForm(contact, false);
-//        submitContactModification();
-        Thread.sleep(3000);
+        submitContactModification();
         returnToHomePage();
     }
 
