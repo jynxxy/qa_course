@@ -10,6 +10,8 @@ import ru.stqa.pft.addressbook.model.Contacts;
 
 import java.util.List;
 
+import static javax.swing.text.html.CSS.getAttribute;
+
 public class ContactHelper extends HelperBase {
 
     public ContactHelper(WebDriver wd) {
@@ -57,6 +59,10 @@ public class ContactHelper extends HelperBase {
 
     public void clickAddNew() {
         click(By.xpath("//a[contains(text(),'add new')]"));
+    }
+
+    public void clickDetails() {
+        click(By.cssSelector("img[alt='Details']"));
     }
 
     public void create(ContactData contact) {
@@ -108,7 +114,6 @@ public class ContactHelper extends HelperBase {
         String firstname = wd.findElement(By.name("firstname")).getAttribute("value");
         String lastname = wd.findElement(By.name("lastname")).getAttribute("value");
         String address = wd.findElement(By.name("address")).getAttribute("value");
-//        String address2 = wd.findElement(By.name("address2")).getAttribute("value");
         String email = wd.findElement(By.name("email")).getAttribute("value");
         String home = wd.findElement(By.name("home")).getAttribute("value");
         String mobile = wd.findElement(By.name("mobile")).getAttribute("value");
@@ -129,6 +134,20 @@ public class ContactHelper extends HelperBase {
 //        WebElement check2 = wd.findElement(By.xpath(String.format("//input[@value='%s']/../../td[8]/a",id))).click();
 //        WebElement check3 = wd.findElement(By.xpath(String.format("//tr[.//input[@value='%s']]/td[8]/a", id)));
 //        WebElement check4 = wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']",id)));
+    }
+
+    public void test(){
+        String text = wd.findElement(By.xpath("/html/body/div/div[4]")).getAttribute("innerText");
+        System.out.println(text);
+    }
+
+    public ContactData contactDetailsInfo () {
+        String text = wd.findElement(By.tagName("div")).getAttribute("innerText");
+        System.out.println(text);
+
+
+
+        return contactDetailsInfo();
     }
 
 }
