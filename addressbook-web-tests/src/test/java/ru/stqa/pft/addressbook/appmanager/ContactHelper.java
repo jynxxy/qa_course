@@ -66,11 +66,12 @@ public class ContactHelper extends HelperBase {
         returnToHomePage();
     }
 
-    public void modify(ContactData contact) {
+    public void modify(ContactData contact) throws InterruptedException {
         selectContactById(contact.getId());
-        initContactModification();
+        initContactModificationById(contact.getId());
         fillContactForm(contact, false);
-        submitContactModification();
+//        submitContactModification();
+        Thread.sleep(3000);
         returnToHomePage();
     }
 
