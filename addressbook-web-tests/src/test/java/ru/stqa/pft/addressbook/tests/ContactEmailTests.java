@@ -17,17 +17,17 @@ public class ContactEmailTests extends TestBase {
         ContactData contact = app.contact().all().iterator().next();
         ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
 
-        assertThat(contact.getAddress(), equalTo(email(contactInfoFromEditForm)));
+        assertThat(contact.getEmail(), equalTo(mergeEmails(contactInfoFromEditForm)));
     }
 
-    private <T> String email(ContactData contact) {
-        return Arrays.asList(contact.getAddress())
+    private <T> String mergeEmails(ContactData contact) {
+        return Arrays.asList(contact.getEmail(), contact.getEmail2(), contact.getEmail3())
                 .stream().filter((s) -> !s.equals(""))
-                .map(ContactAddressTests::cleaned)
+                .map(ContactEmailTests::cleanEmails)
                 .collect(Collectors.joining("\n"));
     }
 
-    public static String cleaned (String address) {
-        return address.replaceAll("\\s", "").replaceAll("[-()]","");
+    public static String cleanEmails(String email) {
+        return email.replaceAll("\\s", "").replaceAll("[-()]","");
     }
 }
