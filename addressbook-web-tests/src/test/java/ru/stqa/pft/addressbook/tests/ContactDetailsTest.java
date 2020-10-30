@@ -1,10 +1,9 @@
 package ru.stqa.pft.addressbook.tests;
 
-import org.openqa.selenium.WebElement;
+import org.hamcrest.CoreMatchers;
+import org.hamcrest.MatcherAssert;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
-
-import java.util.Arrays;
 
 public class ContactDetailsTest extends TestBase {
 
@@ -15,12 +14,9 @@ public class ContactDetailsTest extends TestBase {
         ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
 
         app.contact().clickDetails();
-        app.contact().tekst();
+        ContactData contactDetailsInfo = app.contact().contactDetailsInfo(contact);
 
-        //        Thread.sleep(3000);
-
+        MatcherAssert.assertThat(contactDetailsInfo, CoreMatchers.equalTo(contactInfoFromEditForm));
     }
-
-
 
 }

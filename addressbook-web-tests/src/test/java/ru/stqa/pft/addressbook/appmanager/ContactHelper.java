@@ -138,7 +138,8 @@ public class ContactHelper extends HelperBase {
 //        WebElement check4 = wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']",id)));
     }
 
-    public void  tekst(){
+    public ContactData contactDetailsInfo(ContactData contactDetails){
+
         WebElement element = wd.findElement(By.id("content"));
         String contentText = element.getText();
         List<String> contentLines = Arrays.asList(contentText.split("\n"));
@@ -150,6 +151,9 @@ public class ContactHelper extends HelperBase {
         String work = contentLines.get(4).replaceAll("W: ", "");
         String email = contentLines.get(6);
 
+        return new ContactData().withId(contactDetails.getId()).
+                withFirstName(firstname).withLastName(lastname).withAddress(address)
+                .withHomePhone(home).withWorkPhone(work).withEmail(email);
 
 
 
@@ -163,15 +167,6 @@ public class ContactHelper extends HelperBase {
         System.out.println(text);
 //        text.replaceAll("\n\n", "\n");
 //        System.out.println(text.replaceAll("\n\n", "").replaceAll("\\s", "\n"));
-    }
-
-    public ContactData contactDetailsInfo () {
-        String text = wd.findElement(By.tagName("div")).getAttribute("innerText");
-        System.out.println(text);
-
-
-
-        return contactDetailsInfo();
     }
 
 }
