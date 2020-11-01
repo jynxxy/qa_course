@@ -8,7 +8,11 @@ import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
+
+import static javax.swing.text.html.CSS.getAttribute;
 
 public class ContactHelper extends HelperBase {
 
@@ -57,6 +61,10 @@ public class ContactHelper extends HelperBase {
 
     public void clickAddNew() {
         click(By.xpath("//a[contains(text(),'add new')]"));
+    }
+
+    public void clickDetails() {
+        click(By.cssSelector("img[alt='Details']"));
     }
 
     public void create(ContactData contact) {
@@ -130,6 +138,37 @@ public class ContactHelper extends HelperBase {
 //        WebElement check2 = wd.findElement(By.xpath(String.format("//input[@value='%s']/../../td[8]/a",id))).click();
 //        WebElement check3 = wd.findElement(By.xpath(String.format("//tr[.//input[@value='%s']]/td[8]/a", id)));
 //        WebElement check4 = wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']",id)));
+    }
+
+    public ContactData contactDetailsInfo(ContactData contactDetails){
+
+        WebElement element = wd.findElement(By.id("content"));
+        String contentText = element.getText();
+        List<String> contentLines = Arrays.asList(contentText.split("\n"));
+        String [] name = contentLines.get(0).split(" ");
+        String firstname = name[0];
+        String lastname = name[1];
+        String address = contentLines.get(1);
+        String home = contentLines.get(3).replaceAll("H: ", "");
+        String work = contentLines.get(4).replaceAll("W: ", "");
+        String email = contentLines.get(6);
+
+        return new ContactData().withId(contactDetails.getId()).
+                withFirstName(firstname).withLastName(lastname).withAddress(address)
+                .withHomePhone(home).withWorkPhone(work).withEmail(email);
+
+
+
+
+       }
+
+
+
+    public void test(){
+        String text = wd.findElement(By.xpath("/html/body/div/div[4]")).getAttribute("innerText");
+        System.out.println(text);
+//        text.replaceAll("\n\n", "\n");
+//        System.out.println(text.replaceAll("\n\n", "").replaceAll("\\s", "\n"));
     }
 
 }
