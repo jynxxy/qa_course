@@ -3,7 +3,11 @@ package ru.stqa.pft.addressbook.model;
 public class ContactData {
     private int id = Integer.MAX_VALUE;
     private String firstname;
+    private String middlename;
     private String lastname;
+    private String nick;
+    private String title;
+    private String company;
     private String address;
     private String address2;
     private String home;
@@ -168,6 +172,42 @@ public class ContactData {
 
     public ContactData withDetails(String details) {
         this.details = details;
+        return this;
+    }
+
+    public String getMiddlename() {
+        return middlename;
+    }
+
+    public ContactData withMiddlename(String middlename) {
+        this.middlename = middlename;
+        return this;
+    }
+
+    public String getNick() {
+        return nick;
+    }
+
+    public ContactData withNick(String nick) {
+        this.nick = nick;
+        return this;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public ContactData withTitle(String title) {
+        this.title = title;
+        return this;
+    }
+
+    public String getCompany() {
+        return company;
+    }
+
+    public ContactData withCompany(String company) {
+        this.company = company;
         return this;
     }
 }
