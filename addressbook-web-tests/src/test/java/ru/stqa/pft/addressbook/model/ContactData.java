@@ -14,6 +14,7 @@ public class ContactData {
     private String email3;
     private String group;
     private String allPhones;
+    private String details;
 
     @Override
     public String toString() {
@@ -161,4 +162,12 @@ public class ContactData {
         return this;
     }
 
+    public String getDetails() {
+        return details;
+    }
+
+    public ContactData withDetails(String details) {
+        this.details = details;
+        return this;
+    }
 }

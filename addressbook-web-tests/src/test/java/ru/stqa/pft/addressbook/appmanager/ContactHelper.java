@@ -156,19 +156,19 @@ public class ContactHelper extends HelperBase {
         return new ContactData().withId(contactDetails.getId()).
                 withFirstName(firstname).withLastName(lastname).withAddress(address)
                 .withHomePhone(home).withWorkPhone(work).withEmail(email);
-
-
-
-
        }
-
-
 
     public void test(){
         String text = wd.findElement(By.xpath("/html/body/div/div[4]")).getAttribute("innerText");
         System.out.println(text);
 //        text.replaceAll("\n\n", "\n");
 //        System.out.println(text.replaceAll("\n\n", "").replaceAll("\\s", "\n"));
+    }
+
+    public String details () {
+        String text = wd.findElement(By.id("content")).getText();
+        wd.navigate().back();
+        return text;
     }
 
 }
