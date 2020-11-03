@@ -19,7 +19,6 @@ public class ContactData {
     private String address2;
     @Expose
     private String home;
-    @Expose
     private String mobile;
     private String work;
     @Expose
