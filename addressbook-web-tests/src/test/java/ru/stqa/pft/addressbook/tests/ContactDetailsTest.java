@@ -1,6 +1,5 @@
 package ru.stqa.pft.addressbook.tests;
 
-import org.hamcrest.CoreMatchers;
 import org.hamcrest.MatcherAssert;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
@@ -15,6 +14,7 @@ public class ContactDetailsTest extends TestBase {
         app.goTo().goToHomePage();
         ContactData contact = app.contact().all().iterator().next();
         ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
+        contactInfoFromEditForm.toString();
 
         app.contact().clickDetails();
         app.contact().details();
@@ -23,44 +23,48 @@ public class ContactDetailsTest extends TestBase {
 
 //        MatcherAssert.assertThat(contact.withDetails(contact.getDetails()), CoreMatchers.equalTo(mergeDetailsFromEditForm(contactInfoFromEditForm)));
 
+//        String name = paragraph_1(contact) + "\n" + paragraph_2(contact) + "\n" + paragraph_3(contact) + "\n" + paragraph_4(contact);
 
 
-
-        String name = fullName(contact) + "\n" + mergePhones(contact) + "\n" + mergePhones(contact);
-
+//        MatcherAssert.assertThat(contact.getDetails(), equals(getAll(contactInfoFromEditForm)));
     }
 
     private String getAll(ContactData contact) {
-        return  Arrays.asList(paragraph1(contact))
+        return  Arrays.asList(paragraph_1(contact), paragraph_2(contact), paragraph_3(contact), paragraph_4(contact))
                 .stream().filter((s -> !s.equals("")))
                 .collect(Collectors.joining("\n"));
     }
 
 
-    private <T> String fullName(ContactData contact) {
+    private <T> String paragraph_1(ContactData contact) {
         return Arrays.asList(contact.getFirstName(), contact.getMiddlename(), contact.getLastName())
                 .stream().filter((s -> !s.equals("")))
                 .collect(Collectors.joining(" "));
     }
 
-    private String paragraph1(ContactData contact) {
-        return  Arrays.asList(fullName(contact), contact.getNick(), contact.getTitle(),
+    private String paragraph_2(ContactData contact) {
+        return  Arrays.asList(paragraph_1(contact), contact.getNick(), contact.getTitle(),
                 contact.getCompany(), contact.getAddress())
                 .stream().filter((s -> !s.equals("")))
                 .collect(Collectors.joining("\n"));
     }
 
-    private <T> String address1(ContactData contact) {
-        return Arrays.asList(contact.getAddress())
+    private <T> String paragraph_3(ContactData contact) {
+        return Arrays.asList(paragraph_2(contact), contact.getHomePhone(), contact.getMobilePhone(),
+                contact.getWorkPhone(), contact.getFax())
                 .stream().filter((s -> !s.equals("")))
-                .collect(Collectors.joining(" "));
+                .collect(Collectors.joining("\n"));
     }
 
-    private <T> String address2(ContactData contact) {
-        return Arrays.asList(contact.getAddress2())
+    private <T> String paragraph_4(ContactData contact) {
+        return Arrays.asList(paragraph_3(contact), contact.getEmail(), contact.getEmail2(), contact.getEmail3())
                 .stream().filter((s -> !s.equals("")))
-                .collect(Collectors.joining(" "));
+                .collect(Collectors.joining("\n"));
     }
+
+
+
+
 
     private <T> String mergePhones(ContactData contact) {
         return Arrays.asList(contact.getHomePhone(), contact.getMobilePhone(), contact.getWorkPhone())

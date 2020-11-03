@@ -171,6 +171,35 @@ public class ContactHelper extends HelperBase {
         return text;
     }
 
+    public ContactData infoFromEditForm_v2(ContactData contact) {
+        initContactModificationById(contact.getId());
+        String firstname = wd.findElement(By.name("firstname")).getAttribute("value");
+        String middlename = wd.findElement(By.name("middlename")).getAttribute("value");
+        String lastname = wd.findElement(By.name("lastname")).getAttribute("value");
+        String nickname = wd.findElement(By.name("nickname")).getAttribute("value");
+        String company = wd.findElement(By.name("company")).getAttribute("value");
+        String title = wd.findElement(By.name("title")).getAttribute("value");
+        String address = wd.findElement(By.name("address")).getAttribute("value");
+        String home = wd.findElement(By.name("home")).getAttribute("value");
+        String mobile = wd.findElement(By.name("mobile")).getAttribute("value");
+        String work = wd.findElement(By.name("work")).getAttribute("value");
+        String fax = wd.findElement(By.name("fax")).getAttribute("value");
+        String email = wd.findElement(By.name("email")).getAttribute("value");
+        String email2 = wd.findElement(By.name("email2")).getAttribute("value");
+        String email3 = wd.findElement(By.name("email3")).getAttribute("value");
+        String homepage = wd.findElement(By.name("homepage")).getAttribute("value");
+        String address2 = wd.findElement(By.name("address2")).getAttribute("value");
+        String phone2 = wd.findElement(By.name("phone2")).getAttribute("value");
+        String notes = wd.findElement(By.name("notes")).getAttribute("value");
+        wd.navigate().back();
+        return new ContactData().withId(contact.getId())
+                .withFirstName(firstname).withMiddlename(middlename).withLastName(lastname).withNick(nickname)
+                .withTitle(title).withCompany(company).withAddress(address)
+                .withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work)
+                .withEmail(email).withEmail2(email2).withEmail3(email3)
+                .withAddress2(address2).withNotes(notes);
+
+    }
 
 
 }

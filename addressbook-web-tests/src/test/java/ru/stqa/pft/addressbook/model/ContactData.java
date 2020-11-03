@@ -13,10 +13,12 @@ public class ContactData {
     private String home;
     private String mobile;
     private String work;
+    private String fax;
     private String email;
     private String email2;
     private String email3;
     private String group;
+    private String notes;
     private String allPhones;
     private String details;
 
@@ -208,6 +210,24 @@ public class ContactData {
 
     public ContactData withCompany(String company) {
         this.company = company;
+        return this;
+    }
+
+    public String getFax() {
+        return fax;
+    }
+
+    public ContactData withFax(String fax) {
+        this.fax = fax;
+        return this;
+    }
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public ContactData withNotes(String notes) {
+        this.notes = notes;
         return this;
     }
 }
