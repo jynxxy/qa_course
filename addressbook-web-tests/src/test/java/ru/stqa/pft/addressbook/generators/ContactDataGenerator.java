@@ -7,7 +7,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.thoughtworks.xstream.XStream;
 import ru.stqa.pft.addressbook.model.ContactData;
-import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -18,13 +17,13 @@ import java.util.List;
 
 public class ContactDataGenerator {
 
-    @Parameter (names = "-c", description = "Contact count")
+    @Parameter(names = "-c", description = "Contact count")
     public int count;
 
-    @Parameter (names = "-f", description = "Target file")
+    @Parameter(names = "-f", description = "Target file")
     public String file;
 
-    @Parameter (names = "-d", description = "Data format")
+    @Parameter(names = "-d", description = "Data format")
     public String format;
 
     public static void main(String[] args) throws IOException {
@@ -73,18 +72,19 @@ public class ContactDataGenerator {
     private static void saveAsCsv(List<ContactData> contacts, File file) throws IOException {
         Writer writer = new FileWriter(file);
         for (ContactData contact : contacts) {
-            writer.write(String.format("%s;%s;%s;%s\n", contact.getFirstName(), contact.getLastName(),
-                    contact.getMobilePhone(), contact.getAddress() ));
+            writer.write(String.format("%s;%s;%s;%s;%s\n", contact.getFirstName(), contact.getLastName(),
+                    contact.getHomePhone(), contact.getEmail(), contact.getGroup()));
         }
         writer.close();
     }
 
-    private static List<ContactData> generateContacts (int count) {
+    private static List<ContactData> generateContacts(int count) {
         List<ContactData> contacts = new ArrayList<ContactData>();
         for (int i = 0; i < count; i++) {
             contacts.add(new ContactData()
                     .withFirstName(String.format("firstname %s", i)).withLastName(String.format("lastname %s", i))
-                    .withMobilePhone(String.format("33344 %s", i)).withAddress(String.format("address %s", i)));
+                    .withHomePhone(String.format("33344 %s", i)).withEmail(String.format("email%s@test.com", i))
+                    .withGroup(String.format("test %s", i)));
         }
         return contacts;
     }

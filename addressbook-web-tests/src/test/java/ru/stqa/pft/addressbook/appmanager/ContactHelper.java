@@ -3,16 +3,11 @@ package ru.stqa.pft.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
-import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
-
-import static javax.swing.text.html.CSS.getAttribute;
 
 public class ContactHelper extends HelperBase {
 
@@ -27,11 +22,11 @@ public class ContactHelper extends HelperBase {
         type(By.name("email"), contactData.getEmail());
         attach(By.name("photo"), contactData.getPhoto());
 
-        if (creation) {
-            new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
-        } else {
-            Assert.assertFalse(isElementPresent(By.name("new_group")));
-        }
+//        if (creation) {
+//            new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+//        } else {
+//            Assert.assertFalse(isElementPresent(By.name("new_group")));
+//        }
     }
 
     public void submitContactCreation() {
@@ -141,12 +136,12 @@ public class ContactHelper extends HelperBase {
 //        WebElement check4 = wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']",id)));
     }
 
-    public ContactData contactDetailsInfo(ContactData contactDetails){
+    public ContactData contactDetailsInfo(ContactData contactDetails) {
 
         WebElement element = wd.findElement(By.id("content"));
         String contentText = element.getText();
         List<String> contentLines = Arrays.asList(contentText.split("\n"));
-        String [] name = contentLines.get(0).split(" ");
+        String[] name = contentLines.get(0).split(" ");
         String firstname = name[0];
         String lastname = name[1];
         String address = contentLines.get(1);
@@ -159,13 +154,10 @@ public class ContactHelper extends HelperBase {
                 .withHomePhone(home).withWorkPhone(work).withEmail(email);
 
 
+    }
 
 
-       }
-
-
-
-    public void test(){
+    public void test() {
         String text = wd.findElement(By.xpath("/html/body/div/div[4]")).getAttribute("innerText");
         System.out.println(text);
 //        text.replaceAll("\n\n", "\n");
