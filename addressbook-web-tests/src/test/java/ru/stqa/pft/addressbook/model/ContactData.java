@@ -19,6 +19,7 @@ public class ContactData {
     private String email3;
     private String group;
     private String notes;
+    private String phone2;
     private String allPhones;
     private String details;
 
@@ -228,6 +229,15 @@ public class ContactData {
 
     public ContactData withNotes(String notes) {
         this.notes = notes;
+        return this;
+    }
+
+    public String getPhone2() {
+        return phone2;
+    }
+
+    public ContactData withPhone2(String phone2) {
+        this.phone2 = phone2;
         return this;
     }
 }

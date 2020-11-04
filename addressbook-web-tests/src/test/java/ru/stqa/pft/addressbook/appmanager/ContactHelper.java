@@ -195,8 +195,9 @@ public class ContactHelper extends HelperBase {
         return new ContactData().withId(contact.getId())
                 .withFirstName(firstname).withMiddlename(middlename).withLastName(lastname).withNick(nickname)
                 .withTitle(title).withCompany(company).withAddress(address)
-                .withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work)
+                .withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work).withFax(fax)
                 .withEmail(email).withEmail2(email2).withEmail3(email3)
+                .withHomePhone(homepage).withPhone2(phone2)
                 .withAddress2(address2).withNotes(notes);
 
     }

@@ -13,20 +13,20 @@ public class ContactDetailsTest extends TestBase {
     public void testContactDetails() throws InterruptedException {
         app.goTo().goToHomePage();
         ContactData contact = app.contact().all().iterator().next();
-        ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
-        contactInfoFromEditForm.toString();
+        ContactData contactInfoFromEditForm = app.contact().infoFromEditForm_v2(contact);
+
 
         app.contact().clickDetails();
-        app.contact().details();
+        String details = app.contact().details();
 
 //        ContactData contactDetailsInfo = app.contact().contactDetailsInfo(contact);
 
 //        MatcherAssert.assertThat(contact.withDetails(contact.getDetails()), CoreMatchers.equalTo(mergeDetailsFromEditForm(contactInfoFromEditForm)));
 
 //        String name = paragraph_1(contact) + "\n" + paragraph_2(contact) + "\n" + paragraph_3(contact) + "\n" + paragraph_4(contact);
+        String name = getAll(contactInfoFromEditForm);
 
-
-//        MatcherAssert.assertThat(contact.getDetails(), equals(getAll(contactInfoFromEditForm)));
+        MatcherAssert.assertThat(details, equals(name));
     }
 
     private String getAll(ContactData contact) {
@@ -35,30 +35,37 @@ public class ContactDetailsTest extends TestBase {
                 .collect(Collectors.joining("\n"));
     }
 
+    private boolean iaEmpty(String s) {
+        return s == null || "".equals(s);
+    }
+
+    private boolean isNotEmpty(String s) {
+        return s != null && !"".equals(s);
+    }
 
     private <T> String paragraph_1(ContactData contact) {
         return Arrays.asList(contact.getFirstName(), contact.getMiddlename(), contact.getLastName())
-                .stream().filter((s -> !s.equals("")))
+                .stream().filter(this::isNotEmpty)
                 .collect(Collectors.joining(" "));
     }
 
     private String paragraph_2(ContactData contact) {
-        return  Arrays.asList(paragraph_1(contact), contact.getNick(), contact.getTitle(),
-                contact.getCompany(), contact.getAddress())
-                .stream().filter((s -> !s.equals("")))
+        return  Arrays.asList(contact.getNick(), contact.getTitle(), contact.getCompany(), contact.getAddress())
+                .stream().filter(this::isNotEmpty)
                 .collect(Collectors.joining("\n"));
     }
 
     private <T> String paragraph_3(ContactData contact) {
-        return Arrays.asList(paragraph_2(contact), contact.getHomePhone(), contact.getMobilePhone(),
-                contact.getWorkPhone(), contact.getFax())
-                .stream().filter((s -> !s.equals("")))
+        return Arrays.asList("H: " + contact.getHomePhone(), "M: " + contact.getMobilePhone(),
+                "W: " + contact.getWorkPhone(), "F: " + contact.getFax())
+                .stream().filter(this::isNotEmpty)
                 .collect(Collectors.joining("\n"));
     }
 
     private <T> String paragraph_4(ContactData contact) {
-        return Arrays.asList(paragraph_3(contact), contact.getEmail(), contact.getEmail2(), contact.getEmail3())
-                .stream().filter((s -> !s.equals("")))
+        return Arrays.asList(contact.getEmail(), contact.getEmail2(), contact.getEmail3(),
+                "Homepage: " + contact.getHomePhone(), contact.getAddress2(), contact.getPhone2())
+                .stream().filter(this::isNotEmpty)
                 .collect(Collectors.joining("\n"));
     }
 
