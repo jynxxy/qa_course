@@ -166,7 +166,15 @@ public class ContactHelper extends HelperBase {
     }
 
     public String details () {
-        String text = wd.findElement(By.id("content")).getText();
+        String text = wd.findElement(By.id("content")).getText()
+                .replaceAll("H: ", "")
+                .replaceAll("M: ", "")
+                .replaceAll("W: ", "")
+                .replaceAll("F: ", "")
+                .replaceAll("P: ", "")
+                .replaceAll("Homepage:", "")
+                .replaceAll("\n", "");
+
         wd.navigate().back();
         return text;
     }
@@ -197,10 +205,9 @@ public class ContactHelper extends HelperBase {
                 .withTitle(title).withCompany(company).withAddress(address)
                 .withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work).withFax(fax)
                 .withEmail(email).withEmail2(email2).withEmail3(email3)
-                .withHomePhone(homepage).withPhone2(phone2)
-                .withAddress2(address2).withNotes(notes);
+                .withHomepage(homepage).withAddress2(address2)
+                .withPhone2(phone2).withNotes(notes);
 
     }
-
 
 }

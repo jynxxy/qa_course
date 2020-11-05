@@ -9,7 +9,6 @@ public class ContactData {
     private String title;
     private String company;
     private String address;
-    private String address2;
     private String home;
     private String mobile;
     private String work;
@@ -17,11 +16,14 @@ public class ContactData {
     private String email;
     private String email2;
     private String email3;
-    private String group;
-    private String notes;
+    private String homepage;
+    private String address2;
     private String phone2;
+    private String notes;
     private String allPhones;
+    private String group;
     private String details;
+
 
     @Override
     public String toString() {
@@ -238,6 +240,15 @@ public class ContactData {
 
     public ContactData withPhone2(String phone2) {
         this.phone2 = phone2;
+        return this;
+    }
+
+    public String getHomepage() {
+        return homepage;
+    }
+
+    public ContactData withHomepage(String homepage) {
+        this.homepage = homepage;
         return this;
     }
 }
