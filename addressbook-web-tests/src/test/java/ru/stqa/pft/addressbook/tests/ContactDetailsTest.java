@@ -1,5 +1,6 @@
 package ru.stqa.pft.addressbook.tests;
 
+import org.hamcrest.CoreMatchers;
 import org.hamcrest.MatcherAssert;
 import org.junit.Assert;
 import org.testng.annotations.Test;
@@ -23,8 +24,10 @@ public class ContactDetailsTest extends TestBase {
 
         String name = getAll(contactInfoFromEditForm);
 
-        MatcherAssert.assertThat(details, equals(name));  //this is the first assertion I tried to use
-        Assert.assertEquals(details, name);               //this is the second assertion I tried to use
+
+        MatcherAssert.assertThat(details, CoreMatchers.equalTo(name));
+//        MatcherAssert.assertThat(details, equals(name));  //this is the first assertion I tried to use
+//        Assert.assertEquals(details, name);               //this is the second assertion I tried to use
     }
 
     private String getAll(ContactData contact) {
