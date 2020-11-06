@@ -149,7 +149,8 @@ public class ContactHelper extends HelperBase {
                 .replaceAll("P: ", "")
                 .replaceAll("Homepage:", "")
                 .replaceAll("\n", "")
-                .replaceAll("Birthday", "");
+                .replaceAll("Birthday", "")
+                .replaceAll("[()]", "");
         wd.navigate().back();
         return text;
     }

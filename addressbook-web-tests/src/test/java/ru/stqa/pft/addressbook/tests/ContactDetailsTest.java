@@ -79,7 +79,7 @@ public class ContactDetailsTest extends TestBase {
     }
 
     private <T> String paragraph_5(ContactData contact) {
-        return Arrays.asList(contact.getBirthday_day() + ".", contact.getBirthday_month(),
+        return Arrays.asList(" " + contact.getBirthday_day() + ".", contact.getBirthday_month(),
                 contact.getBirthday_year(), birthday(contact))
                 .stream().filter(this::isNotEmpty)
                 .collect(Collectors.joining(" "));
