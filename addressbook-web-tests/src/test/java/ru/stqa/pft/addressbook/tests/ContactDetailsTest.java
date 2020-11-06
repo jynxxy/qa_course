@@ -72,16 +72,17 @@ public class ContactDetailsTest extends TestBase {
 
     private <T> String paragraph_4(ContactData contact) {
         return Arrays.asList(contact.getEmail(), contact.getEmail2(), contact.getEmail3(),
-                contact.getHomepage(), "\n\n" + contact.getAddress2(), contact.getPhone2(),
-                "\n" + contact.getNotes())
+                contact.getHomepage(),contact.getAddress2(), contact.getPhone2(), contact.getNotes())
                 .stream().filter(this::isNotEmpty)
+                .map(ContactDetailsTest::cleanDomain)
                 .collect(Collectors.joining("\n"));
     }
 
     private <T> String paragraph_5(ContactData contact) {
-        return Arrays.asList(" " + contact.getBirthday_day() + ".", contact.getBirthday_month(),
+        return Arrays.asList(" " + contact.getBirthday_day(), contact.getBirthday_month(),
                 contact.getBirthday_year(), birthday(contact))
                 .stream().filter(this::isNotEmpty)
+                .map(ContactDetailsTest::cleanDate)
                 .collect(Collectors.joining(" "));
     }
 
@@ -93,5 +94,13 @@ public class ContactDetailsTest extends TestBase {
         String actualAge = Integer.toString(actualAgeInt);
 
         return actualAge;
+    }
+
+    public static String cleanDate(String cleanDate) {
+        return cleanDate.replaceAll("-", "");
+    }
+
+    public static String cleanDomain(String cleanDomain) {
+        return cleanDomain.replaceAll("\\.", "");
     }
 }
