@@ -17,12 +17,15 @@ public class ContactData {
     private String email2;
     private String email3;
     private String homepage;
+    private String birthday_day;
+    private String birthday_month;
+    private String birthday_year;
     private String address2;
     private String phone2;
     private String notes;
     private String allPhones;
     private String group;
-    private String details;
+
 
 
     @Override
@@ -106,6 +109,50 @@ public class ContactData {
         return allPhones;
     }
 
+    public String getMiddlename() {
+        return middlename;
+    }
+
+    public String getNick() {
+        return nick;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getCompany() {
+        return company;
+    }
+
+    public String getFax() {
+        return fax;
+    }
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public String getPhone2() {
+        return phone2;
+    }
+
+    public String getHomepage() {
+        return homepage;
+    }
+
+    public String getBirthday_day() {
+        return birthday_day;
+    }
+
+    public String getBirthday_month() {
+        return birthday_month;
+    }
+
+    public String getBirthday_year() {
+        return birthday_year;
+    }
+
     public ContactData withAllPhones(String allPhones) {
         this.allPhones = allPhones;
         return this;
@@ -171,26 +218,9 @@ public class ContactData {
         return this;
     }
 
-    public String getDetails() {
-        return details;
-    }
-
-    public ContactData withDetails(String details) {
-        this.details = details;
-        return this;
-    }
-
-    public String getMiddlename() {
-        return middlename;
-    }
-
     public ContactData withMiddlename(String middlename) {
         this.middlename = middlename;
         return this;
-    }
-
-    public String getNick() {
-        return nick;
     }
 
     public ContactData withNick(String nick) {
@@ -198,17 +228,9 @@ public class ContactData {
         return this;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
     public ContactData withTitle(String title) {
         this.title = title;
         return this;
-    }
-
-    public String getCompany() {
-        return company;
     }
 
     public ContactData withCompany(String company) {
@@ -216,17 +238,9 @@ public class ContactData {
         return this;
     }
 
-    public String getFax() {
-        return fax;
-    }
-
     public ContactData withFax(String fax) {
         this.fax = fax;
         return this;
-    }
-
-    public String getNotes() {
-        return notes;
     }
 
     public ContactData withNotes(String notes) {
@@ -234,21 +248,29 @@ public class ContactData {
         return this;
     }
 
-    public String getPhone2() {
-        return phone2;
-    }
-
     public ContactData withPhone2(String phone2) {
         this.phone2 = phone2;
         return this;
-    }
-
-    public String getHomepage() {
-        return homepage;
     }
 
     public ContactData withHomepage(String homepage) {
         this.homepage = homepage;
         return this;
     }
+
+    public ContactData withBirthday_day(String birthday_day) {
+        this.birthday_day = birthday_day;
+        return this;
+    }
+
+    public ContactData withBirthday_month(String birthday_month) {
+        this.birthday_month = birthday_month;
+        return this;
+    }
+
+    public ContactData withBirthday_year(String birthday_year) {
+        this.birthday_year = birthday_year;
+        return this;
+    }
+
 }

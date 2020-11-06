@@ -7,6 +7,9 @@ import org.testng.annotations.Test;
 import org.testng.asserts.Assertion;
 import ru.stqa.pft.addressbook.model.ContactData;
 
+import java.time.LocalDate;
+import java.time.Year;
+import java.time.temporal.ChronoUnit;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
@@ -26,12 +29,12 @@ public class ContactDetailsTest extends TestBase {
 
 
         MatcherAssert.assertThat(details, CoreMatchers.equalTo(name));
-//        MatcherAssert.assertThat(details, equals(name));  //this is the first assertion I tried to use
-//        Assert.assertEquals(details, name);               //this is the second assertion I tried to use
+
     }
 
     private String getAll(ContactData contact) {
-        return  Arrays.asList(paragraph_1(contact), paragraph_2(contact), paragraph_3(contact), paragraph_4(contact))
+        return  Arrays.asList(paragraph_1(contact), paragraph_2(contact), paragraph_3(contact),
+                paragraph_4(contact), paragraph_5(contact))
                 .stream().filter((s -> !s.equals("")))
                 .map(ContactDetailsTest::clean)
                 .collect(Collectors.joining(""));
@@ -75,4 +78,20 @@ public class ContactDetailsTest extends TestBase {
                 .collect(Collectors.joining("\n"));
     }
 
+    private <T> String paragraph_5(ContactData contact) {
+        return Arrays.asList(contact.getBirthday_day() + ".", contact.getBirthday_month(),
+                contact.getBirthday_year(), birthday(contact))
+                .stream().filter(this::isNotEmpty)
+                .collect(Collectors.joining(" "));
+    }
+
+    private String birthday(ContactData contact) {
+        String year = contact.getBirthday_year();
+        int yearInt = Integer.parseInt(year);
+        int actualYear = Year.now().getValue();
+        int actualAgeInt = actualYear - yearInt;
+        String actualAge = Integer.toString(actualAgeInt);
+
+        return actualAge;
+    }
 }

@@ -140,31 +140,6 @@ public class ContactHelper extends HelperBase {
 //        WebElement check4 = wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']",id)));
     }
 
-    public ContactData contactDetailsInfo(ContactData contactDetails){
-
-        WebElement element = wd.findElement(By.id("content"));
-        String contentText = element.getText();
-        List<String> contentLines = Arrays.asList(contentText.split("\n"));
-        String [] name = contentLines.get(0).split(" ");
-        String firstname = name[0];
-        String lastname = name[1];
-        String address = contentLines.get(1);
-        String home = contentLines.get(3).replaceAll("H: ", "");
-        String work = contentLines.get(4).replaceAll("W: ", "");
-        String email = contentLines.get(6);
-
-        return new ContactData().withId(contactDetails.getId()).
-                withFirstName(firstname).withLastName(lastname).withAddress(address)
-                .withHomePhone(home).withWorkPhone(work).withEmail(email);
-       }
-
-    public void test(){
-        String text = wd.findElement(By.xpath("/html/body/div/div[4]")).getAttribute("innerText");
-        System.out.println(text);
-//        text.replaceAll("\n\n", "\n");
-//        System.out.println(text.replaceAll("\n\n", "").replaceAll("\\s", "\n"));
-    }
-
     public String details () {
         String text = wd.findElement(By.id("content")).getText()
                 .replaceAll("H: ", "")
@@ -173,8 +148,8 @@ public class ContactHelper extends HelperBase {
                 .replaceAll("F: ", "")
                 .replaceAll("P: ", "")
                 .replaceAll("Homepage:", "")
-                .replaceAll("\n", "");
-
+                .replaceAll("\n", "")
+                .replaceAll("Birthday", "");
         wd.navigate().back();
         return text;
     }
@@ -196,6 +171,9 @@ public class ContactHelper extends HelperBase {
         String email2 = wd.findElement(By.name("email2")).getAttribute("value");
         String email3 = wd.findElement(By.name("email3")).getAttribute("value");
         String homepage = wd.findElement(By.name("homepage")).getAttribute("value");
+        String birthday_day = new Select (wd.findElement(By.name("bday"))).getFirstSelectedOption().getText();
+        String birthday_month = new Select (wd.findElement(By.name("bmonth"))).getFirstSelectedOption().getText();
+        String birthday_year = wd.findElement(By.name("byear")).getAttribute("value");
         String address2 = wd.findElement(By.name("address2")).getAttribute("value");
         String phone2 = wd.findElement(By.name("phone2")).getAttribute("value");
         String notes = wd.findElement(By.name("notes")).getAttribute("value");
@@ -204,10 +182,10 @@ public class ContactHelper extends HelperBase {
                 .withFirstName(firstname).withMiddlename(middlename).withLastName(lastname).withNick(nickname)
                 .withTitle(title).withCompany(company).withAddress(address)
                 .withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work).withFax(fax)
-                .withEmail(email).withEmail2(email2).withEmail3(email3)
-                .withHomepage(homepage).withAddress2(address2)
+                .withEmail(email).withEmail2(email2).withEmail3(email3).withHomepage(homepage)
+                .withBirthday_day(birthday_day).withBirthday_month(birthday_month).withBirthday_year(birthday_year)
+                .withAddress2(address2)
                 .withPhone2(phone2).withNotes(notes);
-
     }
 
 }
