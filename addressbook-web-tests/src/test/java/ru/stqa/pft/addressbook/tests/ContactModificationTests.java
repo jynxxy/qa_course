@@ -22,8 +22,6 @@ public class ContactModificationTests extends TestBase {
     @BeforeMethod
     public void ensurePreconditions() throws IOException {
         contact = new Properties();
-        String target = System.getProperty("target", "local");
-        contact.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
 
         if (!app.goTo().contactPage()) {
             app.contact().create(new ContactData().

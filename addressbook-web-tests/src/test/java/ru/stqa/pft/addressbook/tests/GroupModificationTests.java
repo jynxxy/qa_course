@@ -23,8 +23,6 @@ public class GroupModificationTests extends TestBase {
     @BeforeMethod
     public void ensurePreconditions() throws IOException {
         group = new Properties();
-        String target = System.getProperty("target", "local");
-        group.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
 
         app.goTo().groupPage();
         if (app.group().all().size() == 0) {
@@ -35,8 +33,6 @@ public class GroupModificationTests extends TestBase {
     @Test
     public void testGroupModification() throws IOException {
         group2 = new Properties();
-        String target = System.getProperty("target", "local");
-        group2.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
 
         Groups before = app.group().all();
         GroupData modifiedGroup = before.iterator().next();

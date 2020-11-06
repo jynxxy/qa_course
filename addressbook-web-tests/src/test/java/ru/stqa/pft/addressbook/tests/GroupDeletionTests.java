@@ -22,8 +22,6 @@ public class GroupDeletionTests extends TestBase {
     @BeforeMethod
     public void ensurePreconditions() throws IOException {
         group = new Properties();
-        String target = System.getProperty("target", "local");
-        group.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
 
         app.goTo().groupPage();
         if (app.group().all().size() == 0) {
