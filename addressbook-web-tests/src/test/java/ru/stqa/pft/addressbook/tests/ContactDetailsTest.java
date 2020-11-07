@@ -7,7 +7,6 @@ import ru.stqa.pft.addressbook.model.ContactData;
 
 import java.time.Year;
 import java.util.Arrays;
-import java.util.List;
 import java.util.stream.Collectors;
 
 public class ContactDetailsTest extends TestBase {
@@ -18,25 +17,21 @@ public class ContactDetailsTest extends TestBase {
         ContactData contact = app.contact().all().iterator().next();
         ContactData contactInfoFromEditForm = app.contact().infoFromEditForm_v2(contact);
 
-
         app.contact().clickDetails();
         String details = app.contact().details();
 
         String name = getAll(contactInfoFromEditForm);
 
-
         MatcherAssert.assertThat(details, CoreMatchers.equalTo(name));
-
     }
 
     private String getAll(ContactData contact) {
-       List <String>  dupa =
-        Arrays.asList(paragraph_1(contact), paragraph_2(contact), paragraph_3(contact),
-                paragraph_4(contact), paragraph_5(contact));
-            String kupa = dupa.stream().filter((s -> !s.equals("")))
+       return Arrays.asList(paragraph_1(contact), paragraph_2(contact), paragraph_3(contact),
+                paragraph_4(contact), paragraph_5(contact))
+                .stream().filter((s -> !s.equals("")))
                 .map(ContactDetailsTest::clean)
                 .collect(Collectors.joining(""));
-            return kupa;
+
     }
 
     public static String clean(String cleanedDetails) {
@@ -86,8 +81,6 @@ public class ContactDetailsTest extends TestBase {
                 .collect(Collectors.joining(" "));
     }
 
-
-
     private String countAge(String year) {
         String actualAge = "";
         if (year != null && !year.equals("")) {
@@ -98,7 +91,6 @@ public class ContactDetailsTest extends TestBase {
         }
         return actualAge;
     }
-
 
     public static String cleanDate(String cleanDate) {
         return cleanDate.replaceAll("-", "");
