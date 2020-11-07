@@ -20,6 +20,9 @@ public class ContactData {
     private String birthday_day;
     private String birthday_month;
     private String birthday_year;
+    private String anniversary_day;
+    private String anniversary_month;
+    private String anniversary_year;
     private String address2;
     private String phone2;
     private String notes;
@@ -153,6 +156,18 @@ public class ContactData {
         return birthday_year;
     }
 
+    public String getAnniversary_day() {
+        return anniversary_day;
+    }
+
+    public String getAnniversary_month() {
+        return anniversary_month;
+    }
+
+    public String getAnniversary_year() {
+        return anniversary_year;
+    }
+
     public ContactData withAllPhones(String allPhones) {
         this.allPhones = allPhones;
         return this;
@@ -273,4 +288,18 @@ public class ContactData {
         return this;
     }
 
+    public ContactData withAnniversary_day(String anniversary_day) {
+        this.anniversary_day = anniversary_day;
+        return this;
+    }
+
+    public ContactData withAnniversary_month(String anniversary_month) {
+        this.anniversary_month = anniversary_month;
+        return this;
+    }
+
+    public ContactData withAnniversary_year(String anniversary_year) {
+        this.anniversary_year = anniversary_year;
+        return this;
+    }
 }

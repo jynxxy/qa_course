@@ -150,6 +150,7 @@ public class ContactHelper extends HelperBase {
                 .replaceAll("Homepage:", "")
                 .replaceAll("\n", "")
                 .replaceAll("Birthday", "")
+                .replaceAll("Anniversary", "")
                 .replaceAll("[().]", "");
         wd.navigate().back();
         return text;
@@ -175,6 +176,9 @@ public class ContactHelper extends HelperBase {
         String birthday_day = new Select (wd.findElement(By.name("bday"))).getFirstSelectedOption().getText();
         String birthday_month = new Select (wd.findElement(By.name("bmonth"))).getFirstSelectedOption().getText();
         String birthday_year = wd.findElement(By.name("byear")).getAttribute("value");
+        String anniversary_day = new Select (wd.findElement(By.name("aday"))).getFirstSelectedOption().getText();
+        String anniversary_month = new Select (wd.findElement(By.name("amonth"))).getFirstSelectedOption().getText();
+        String anniversary_year = wd.findElement(By.name("ayear")).getAttribute("value");
         String address2 = wd.findElement(By.name("address2")).getAttribute("value");
         String phone2 = wd.findElement(By.name("phone2")).getAttribute("value");
         String notes = wd.findElement(By.name("notes")).getAttribute("value");
@@ -185,8 +189,9 @@ public class ContactHelper extends HelperBase {
                 .withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work).withFax(fax)
                 .withEmail(email).withEmail2(email2).withEmail3(email3).withHomepage(homepage)
                 .withBirthday_day(birthday_day).withBirthday_month(birthday_month).withBirthday_year(birthday_year)
-                .withAddress2(address2)
-                .withPhone2(phone2).withNotes(notes);
+                .withAnniversary_day(anniversary_day).withAnniversary_month(anniversary_month)
+                .withAnniversary_year(anniversary_year)
+                .withAddress2(address2).withPhone2(phone2).withNotes(notes);
     }
 
 }

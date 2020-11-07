@@ -74,8 +74,10 @@ public class ContactDetailsTest extends TestBase {
 
     private String paragraph_5(ContactData contact) {
         String year = contact.getBirthday_year();
+        String anniversary = contact.getAnniversary_year();
         return Arrays.asList(" " + contact.getBirthday_day(), contact.getBirthday_month(),
-                year, countAge(year))
+                year, countAge(year), contact.getAnniversary_day(), contact.getAnniversary_month(),
+                anniversary, countAnniversary(anniversary))
                 .stream().filter(this::isNotEmpty)
                 .map(ContactDetailsTest::cleanDate)
                 .collect(Collectors.joining(" "));
@@ -90,6 +92,17 @@ public class ContactDetailsTest extends TestBase {
             actualAge = Integer.toString(actualAgeInt);
         }
         return actualAge;
+    }
+
+    private String countAnniversary(String years) {
+        String actualAnniversary = "";
+        if (years != null && !years.equals("")) {
+            int yearsInt = Integer.parseInt(years);
+            int actualYear = Year.now().getValue();
+            int actualAnniversaryInt = actualYear - yearsInt;
+            actualAnniversary = Integer.toString(actualAnniversaryInt);
+        }
+        return actualAnniversary;
     }
 
     public static String cleanDate(String cleanDate) {
