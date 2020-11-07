@@ -59,20 +59,15 @@ public class ContactDetailsTest extends TestBase {
     }
 
     private String paragraph_3(ContactData contact) {
-        return Arrays.asList(contact.getHomePhone(), contact.getMobilePhone(), contact.getWorkPhone(), contact.getFax())
-                .stream().filter(this::isNotEmpty)
-                .collect(Collectors.joining("\n"));
-    }
-
-    private String paragraph_4(ContactData contact) {
-        return Arrays.asList(contact.getEmail(), contact.getEmail2(), contact.getEmail3(),
-                contact.getHomepage(), contact.getAddress2(), contact.getPhone2(), contact.getNotes())
+        return Arrays.asList(contact.getHomePhone(), contact.getMobilePhone(), contact.getWorkPhone(),
+                contact.getFax(), contact.getEmail(), contact.getEmail2(), contact.getEmail3(),
+                contact.getHomepage())
                 .stream().filter(this::isNotEmpty)
                 .map(ContactDetailsTest::cleanDomain)
                 .collect(Collectors.joining("\n"));
     }
 
-    private String paragraph_5(ContactData contact) {
+    private String paragraph_4(ContactData contact) {
         String year = contact.getBirthday_year();
         String anniversary = contact.getAnniversary_year();
         return Arrays.asList(" " + contact.getBirthday_day(), contact.getBirthday_month(),
@@ -81,6 +76,12 @@ public class ContactDetailsTest extends TestBase {
                 .stream().filter(this::isNotEmpty)
                 .map(ContactDetailsTest::cleanDate)
                 .collect(Collectors.joining(" "));
+    }
+
+    private String paragraph_5(ContactData contact) {
+        return Arrays.asList(contact.getAddress2(), contact.getPhone2(), contact.getNotes())
+                .stream().filter(this::isNotEmpty)
+                .collect(Collectors.joining("\n"));
     }
 
     private String countAge(String year) {
