@@ -5,7 +5,6 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 
-import java.io.*;
 import java.util.Properties;
 
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -17,7 +16,7 @@ public class ContactDeletionTests extends TestBase {
     public Properties contact;
 
     @BeforeMethod
-    public void ensurePreconditions() throws IOException {
+    public void ensurePreconditions() {
 
         contact = new Properties();
 
@@ -25,7 +24,7 @@ public class ContactDeletionTests extends TestBase {
             app.contact().create(new ContactData().
                     withFirstName(contact.getProperty("contact.firstname"))
                     .withLastName(contact.getProperty("contact.lastname")).
-                    withHomePhone(contact.getProperty("contact.homePhone"))
+                            withHomePhone(contact.getProperty("contact.homePhone"))
                     .withEmail(contact.getProperty("contact.email"))
                     .withGroup(contact.getProperty("contact.group")));
         }

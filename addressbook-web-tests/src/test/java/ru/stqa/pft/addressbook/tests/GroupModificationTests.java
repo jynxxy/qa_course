@@ -5,15 +5,11 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.Groups;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.testng.Assert.assertEquals;
 
 public class GroupModificationTests extends TestBase {
 
@@ -21,7 +17,7 @@ public class GroupModificationTests extends TestBase {
     private Properties group2;
 
     @BeforeMethod
-    public void ensurePreconditions() throws IOException {
+    public void ensurePreconditions() {
         group = new Properties();
 
         app.goTo().groupPage();
@@ -31,7 +27,7 @@ public class GroupModificationTests extends TestBase {
     }
 
     @Test
-    public void testGroupModification() throws IOException {
+    public void testGroupModification() {
         group2 = new Properties();
 
         Groups before = app.group().all();
