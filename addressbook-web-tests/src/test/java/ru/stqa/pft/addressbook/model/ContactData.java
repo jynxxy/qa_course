@@ -44,7 +44,6 @@ public class ContactData {
     private File photo;
 
 
-
     @Override
     public String toString() {
         return "ContactData{" +
@@ -128,6 +127,8 @@ public class ContactData {
 
     public File getPhoto() {
         return photo;
+    }
+
     public String getMiddlename() {
         return middlename;
     }
@@ -251,10 +252,11 @@ public class ContactData {
 
     public ContactData withPhoto(File photo) {
         this.photo = photo;
-    public ContactData withMiddlename(String middlename) {
-        this.middlename = middlename;
         return this;
     }
+
+    public ContactData withMiddlename(String middlename) {
+        this.middlename = middlename;
         return this;
     }
 

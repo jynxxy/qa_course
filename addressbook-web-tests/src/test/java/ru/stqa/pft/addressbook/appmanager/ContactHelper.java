@@ -4,15 +4,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
-import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
-
-import static javax.swing.text.html.CSS.getAttribute;
 
 public class ContactHelper extends HelperBase {
 
@@ -141,7 +136,7 @@ public class ContactHelper extends HelperBase {
 //        WebElement check4 = wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']",id)));
     }
 
-    public String details () {
+    public String details() {
         String text = wd.findElement(By.id("content")).getText()
                 .replaceAll("H: ", "")
                 .replaceAll("M: ", "")
@@ -174,11 +169,11 @@ public class ContactHelper extends HelperBase {
         String email2 = wd.findElement(By.name("email2")).getAttribute("value");
         String email3 = wd.findElement(By.name("email3")).getAttribute("value");
         String homepage = wd.findElement(By.name("homepage")).getAttribute("value");
-        String birthday_day = new Select (wd.findElement(By.name("bday"))).getFirstSelectedOption().getText();
-        String birthday_month = new Select (wd.findElement(By.name("bmonth"))).getFirstSelectedOption().getText();
+        String birthday_day = new Select(wd.findElement(By.name("bday"))).getFirstSelectedOption().getText();
+        String birthday_month = new Select(wd.findElement(By.name("bmonth"))).getFirstSelectedOption().getText();
         String birthday_year = wd.findElement(By.name("byear")).getAttribute("value");
-        String anniversary_day = new Select (wd.findElement(By.name("aday"))).getFirstSelectedOption().getText();
-        String anniversary_month = new Select (wd.findElement(By.name("amonth"))).getFirstSelectedOption().getText();
+        String anniversary_day = new Select(wd.findElement(By.name("aday"))).getFirstSelectedOption().getText();
+        String anniversary_month = new Select(wd.findElement(By.name("amonth"))).getFirstSelectedOption().getText();
         String anniversary_year = wd.findElement(By.name("ayear")).getAttribute("value");
         String address2 = wd.findElement(By.name("address2")).getAttribute("value");
         String phone2 = wd.findElement(By.name("phone2")).getAttribute("value");
