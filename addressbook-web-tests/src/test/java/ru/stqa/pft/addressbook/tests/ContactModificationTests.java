@@ -5,10 +5,6 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.Properties;
 
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -20,7 +16,7 @@ public class ContactModificationTests extends TestBase {
     private Properties contact;
 
     @BeforeMethod
-    public void ensurePreconditions() throws IOException {
+    public void ensurePreconditions() {
         contact = new Properties();
 
         if (!app.goTo().contactPage()) {
