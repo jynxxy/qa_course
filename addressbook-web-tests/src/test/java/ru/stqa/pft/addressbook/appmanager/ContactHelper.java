@@ -3,11 +3,16 @@ package ru.stqa.pft.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
+
+import static javax.swing.text.html.CSS.getAttribute;
 
 public class ContactHelper extends HelperBase {
 
@@ -136,32 +141,58 @@ public class ContactHelper extends HelperBase {
 //        WebElement check4 = wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']",id)));
     }
 
-    public ContactData contactDetailsInfo(ContactData contactDetails) {
-
-        WebElement element = wd.findElement(By.id("content"));
-        String contentText = element.getText();
-        List<String> contentLines = Arrays.asList(contentText.split("\n"));
-        String[] name = contentLines.get(0).split(" ");
-        String firstname = name[0];
-        String lastname = name[1];
-        String address = contentLines.get(1);
-        String home = contentLines.get(3).replaceAll("H: ", "");
-        String work = contentLines.get(4).replaceAll("W: ", "");
-        String email = contentLines.get(6);
-
-        return new ContactData().withId(contactDetails.getId()).
-                withFirstName(firstname).withLastName(lastname).withAddress(address)
-                .withHomePhone(home).withWorkPhone(work).withEmail(email);
-
-
+    public String details () {
+        String text = wd.findElement(By.id("content")).getText()
+                .replaceAll("H: ", "")
+                .replaceAll("M: ", "")
+                .replaceAll("W: ", "")
+                .replaceAll("F: ", "")
+                .replaceAll("P: ", "")
+                .replaceAll("Homepage:", "")
+                .replaceAll("\n", "")
+                .replaceAll("Birthday", "")
+                .replaceAll("Anniversary", "")
+                .replaceAll("[().]", "");
+        wd.navigate().back();
+        return text;
     }
 
-
-    public void test() {
-        String text = wd.findElement(By.xpath("/html/body/div/div[4]")).getAttribute("innerText");
-        System.out.println(text);
-//        text.replaceAll("\n\n", "\n");
-//        System.out.println(text.replaceAll("\n\n", "").replaceAll("\\s", "\n"));
+    public ContactData infoFromEditForm_v2(ContactData contact) {
+        initContactModificationById(contact.getId());
+        String firstname = wd.findElement(By.name("firstname")).getAttribute("value");
+        String middlename = wd.findElement(By.name("middlename")).getAttribute("value");
+        String lastname = wd.findElement(By.name("lastname")).getAttribute("value");
+        String nickname = wd.findElement(By.name("nickname")).getAttribute("value");
+        String company = wd.findElement(By.name("company")).getAttribute("value");
+        String title = wd.findElement(By.name("title")).getAttribute("value");
+        String address = wd.findElement(By.name("address")).getAttribute("value");
+        String home = wd.findElement(By.name("home")).getAttribute("value");
+        String mobile = wd.findElement(By.name("mobile")).getAttribute("value");
+        String work = wd.findElement(By.name("work")).getAttribute("value");
+        String fax = wd.findElement(By.name("fax")).getAttribute("value");
+        String email = wd.findElement(By.name("email")).getAttribute("value");
+        String email2 = wd.findElement(By.name("email2")).getAttribute("value");
+        String email3 = wd.findElement(By.name("email3")).getAttribute("value");
+        String homepage = wd.findElement(By.name("homepage")).getAttribute("value");
+        String birthday_day = new Select (wd.findElement(By.name("bday"))).getFirstSelectedOption().getText();
+        String birthday_month = new Select (wd.findElement(By.name("bmonth"))).getFirstSelectedOption().getText();
+        String birthday_year = wd.findElement(By.name("byear")).getAttribute("value");
+        String anniversary_day = new Select (wd.findElement(By.name("aday"))).getFirstSelectedOption().getText();
+        String anniversary_month = new Select (wd.findElement(By.name("amonth"))).getFirstSelectedOption().getText();
+        String anniversary_year = wd.findElement(By.name("ayear")).getAttribute("value");
+        String address2 = wd.findElement(By.name("address2")).getAttribute("value");
+        String phone2 = wd.findElement(By.name("phone2")).getAttribute("value");
+        String notes = wd.findElement(By.name("notes")).getAttribute("value");
+        wd.navigate().back();
+        return new ContactData().withId(contact.getId())
+                .withFirstName(firstname).withMiddlename(middlename).withLastName(lastname).withNick(nickname)
+                .withTitle(title).withCompany(company).withAddress(address)
+                .withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work).withFax(fax)
+                .withEmail(email).withEmail2(email2).withEmail3(email3).withHomepage(homepage)
+                .withBirthday_day(birthday_day).withBirthday_month(birthday_month).withBirthday_year(birthday_year)
+                .withAnniversary_day(anniversary_day).withAnniversary_month(anniversary_month)
+                .withAnniversary_year(anniversary_year)
+                .withAddress2(address2).withPhone2(phone2).withNotes(notes);
     }
 
 }

@@ -13,22 +13,36 @@ public class ContactData {
     private int id = Integer.MAX_VALUE;
     @Expose
     private String firstname;
+    private String middlename;
     @Expose
     private String lastname;
+    private String nick;
+    private String title;
+    private String company;
     private String address;
-    private String address2;
     @Expose
     private String home;
     private String mobile;
     private String work;
+    private String fax;
     @Expose
     private String email;
     private String email2;
     private String email3;
-    @Expose
-    private String group;
+    private String homepage;
+    private String birthday_day;
+    private String birthday_month;
+    private String birthday_year;
+    private String anniversary_day;
+    private String anniversary_month;
+    private String anniversary_year;
+    private String address2;
+    private String phone2;
+    private String notes;
     private String allPhones;
+    private String group;
     private File photo;
+
 
 
     @Override
@@ -114,6 +128,60 @@ public class ContactData {
 
     public File getPhoto() {
         return photo;
+    public String getMiddlename() {
+        return middlename;
+    }
+
+    public String getNick() {
+        return nick;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getCompany() {
+        return company;
+    }
+
+    public String getFax() {
+        return fax;
+    }
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public String getPhone2() {
+        return phone2;
+    }
+
+    public String getHomepage() {
+        return homepage;
+    }
+
+    public String getBirthday_day() {
+        return birthday_day;
+    }
+
+    public String getBirthday_month() {
+        return birthday_month;
+    }
+
+    public String getBirthday_year() {
+        return birthday_year;
+    }
+
+    public String getAnniversary_day() {
+        return anniversary_day;
+    }
+
+    public String getAnniversary_month() {
+        return anniversary_month;
+    }
+
+    public String getAnniversary_year() {
+        return anniversary_year;
     }
 
     public ContactData withAllPhones(String allPhones) {
@@ -183,6 +251,75 @@ public class ContactData {
 
     public ContactData withPhoto(File photo) {
         this.photo = photo;
+    public ContactData withMiddlename(String middlename) {
+        this.middlename = middlename;
+        return this;
+    }
+        return this;
+    }
+
+    public ContactData withNick(String nick) {
+        this.nick = nick;
+        return this;
+    }
+
+    public ContactData withTitle(String title) {
+        this.title = title;
+        return this;
+    }
+
+    public ContactData withCompany(String company) {
+        this.company = company;
+        return this;
+    }
+
+    public ContactData withFax(String fax) {
+        this.fax = fax;
+        return this;
+    }
+
+    public ContactData withNotes(String notes) {
+        this.notes = notes;
+        return this;
+    }
+
+    public ContactData withPhone2(String phone2) {
+        this.phone2 = phone2;
+        return this;
+    }
+
+    public ContactData withHomepage(String homepage) {
+        this.homepage = homepage;
+        return this;
+    }
+
+    public ContactData withBirthday_day(String birthday_day) {
+        this.birthday_day = birthday_day;
+        return this;
+    }
+
+    public ContactData withBirthday_month(String birthday_month) {
+        this.birthday_month = birthday_month;
+        return this;
+    }
+
+    public ContactData withBirthday_year(String birthday_year) {
+        this.birthday_year = birthday_year;
+        return this;
+    }
+
+    public ContactData withAnniversary_day(String anniversary_day) {
+        this.anniversary_day = anniversary_day;
+        return this;
+    }
+
+    public ContactData withAnniversary_month(String anniversary_month) {
+        this.anniversary_month = anniversary_month;
+        return this;
+    }
+
+    public ContactData withAnniversary_year(String anniversary_year) {
+        this.anniversary_year = anniversary_year;
         return this;
     }
 }
