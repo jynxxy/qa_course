@@ -12,7 +12,7 @@ import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.util.List;
 
-public class hbConnectionTest {
+public class HbConnectionTest {
 
     private SessionFactory sessionFactory;
 
