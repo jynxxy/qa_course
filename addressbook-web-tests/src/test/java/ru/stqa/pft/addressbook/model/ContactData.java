@@ -3,40 +3,77 @@ package ru.stqa.pft.addressbook.model;
 import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
+import org.checkerframework.checker.units.qual.C;
+import org.hibernate.annotations.Type;
 
+import javax.persistence.*;
 import java.io.File;
 
+@Entity
+@Table (name = "addressbook")
 @XStreamAlias("contact")
 
 public class ContactData {
-    @XStreamOmitField
-    private int id = Integer.MAX_VALUE;
-    @Expose
-    private String firstname;
-    @Expose
-    private String lastname;
-    private String address;
-    private String address2;
-    @Expose
-    private String home;
-    private String mobile;
-    private String work;
-    @Expose
-    private String email;
-    private String email2;
-    private String email3;
-    @Expose
-    private String group;
-    private String allPhones;
-    private File photo;
 
+    @XStreamOmitField
+    @Id
+    @Column (name = "id")
+    private int id = Integer.MAX_VALUE;
+
+    @Expose
+    @Column (name = "firstname")
+    private String firstname;
+
+    @Expose
+    @Column (name = "lastname")
+    private String lastname;
+
+    @Type(type = "text")
+    private String address;
+
+    @Type(type = "text")
+    private String address2;
+
+    @Expose
+    @Column (name =  "home")
+    @Type(type = "text")
+    private String home;
+
+    @Column (name = "mobile")
+    @Type(type = "text")
+    private String mobile;
+
+    @Column (name = "work")
+    @Type(type = "text")
+    private String work;
+
+    @Expose
+    @Type(type = "text")
+    private String email;
+
+    @Type(type = "text")
+    private String email2;
+
+    @Type(type = "text")
+    private String email3;
+
+    @Expose
+    @Transient
+    private String group;
+
+    @Transient
+    private String allPhones;
+
+    @Column (name = "photo")
+    @Type(type = "text")
+    private String photo;
 
     @Override
     public String toString() {
         return "ContactData{" +
-                "id='" + id + '\'' +
-                ", contactname='" + firstname + '\'' +
-                ", contactsurname='" + lastname + '\'' +
+                "id=" + id +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
                 '}';
     }
 
@@ -113,7 +150,7 @@ public class ContactData {
     }
 
     public File getPhoto() {
-        return photo;
+        return new File(photo);
     }
 
     public ContactData withAllPhones(String allPhones) {
@@ -182,7 +219,7 @@ public class ContactData {
     }
 
     public ContactData withPhoto(File photo) {
-        this.photo = photo;
+        this.photo = photo.getPath();
         return this;
     }
 }
