@@ -7,13 +7,11 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
-import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -48,19 +46,19 @@ public class ContactCreationTests extends TestBase {
             line = reader.readLine();
         }
         Gson gson = new Gson();
-        List<ContactData> contacts = gson.fromJson(json, new TypeToken<List<ContactData>>() {}.getType());  // List<GroupData>.class
-        return contacts.stream().map((c) -> new Object[] {c}).collect(Collectors.toList()).iterator();
+        List<ContactData> contacts = gson.fromJson(json, new TypeToken<List<ContactData>>() {
+        }.getType());  // List<GroupData>.class
+        return contacts.stream().map((c) -> new Object[]{c}).collect(Collectors.toList()).iterator();
     }
-
 
 
     @Test(dataProvider = "validContactsFromJson")
     public void testContactCreation(ContactData contact) {
-        Contacts before = app.contact().all();
+        Contacts before = app.db().contacts();
         File photo = new File("src/test/resources/stru.jpg");
         app.goTo().AddNewContact();
         app.contact().create(contact);
-        Contacts after = app.contact().all();
+        Contacts after = app.db().contacts();
         assertThat(after.size(), equalTo(before.size() + 1));
         assertThat(after, equalTo(
                 before.withAdded(contact.withId(after.stream().mapToInt((c) -> c.getId()).max().getAsInt()))));
