@@ -11,7 +11,6 @@ import ru.stqa.pft.addressbook.model.Groups;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -47,18 +46,19 @@ public class GroupCreationTests extends TestBase {
                 line = reader.readLine();
             }
             Gson gson = new Gson();
-            List<GroupData> groups = gson.fromJson(json, new TypeToken<List<GroupData>>() {}.getType());  // List<GroupData>.class
+            List<GroupData> groups = gson.fromJson(json, new TypeToken<List<GroupData>>() {
+            }.getType());  // List<GroupData>.class
             return groups.stream().map((g) -> new Object[]{g}).collect(Collectors.toList()).iterator();
         }
     }
 
     @Test(dataProvider = "validGroupsFromJson")
     public void testGroupCreation(GroupData group) {
+        Groups before = app.db().groups();
         app.goTo().groupPage();
-        Groups before = app.group().all();
         app.group().create(group);
         assertThat(app.group().count(), equalTo(before.size() + 1));
-        Groups after = app.group().all();
+        Groups after = app.db().groups();
         assertThat(after.size(), equalTo(before.size() + 1));
         assertThat(after, equalTo
                 (before.withAdded(group.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
