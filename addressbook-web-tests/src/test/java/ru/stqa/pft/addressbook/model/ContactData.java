@@ -25,12 +25,18 @@ public class ContactData {
     private String firstname;
 
     private String middlename;
+
     @Expose
     @Column (name = "lastname")
     private String lastname;
+
+    @Transient
     private String nick;
+
     private String title;
     private String company;
+
+    @Type(type = "text")
     private String address;
 
     @Type(type = "text")
@@ -48,7 +54,10 @@ public class ContactData {
     @Column (name = "work")
     @Type(type = "text")
     private String work;
+
+    @Transient
     private String fax;
+
     @Expose
     @Type(type = "text")
     private String email;
@@ -58,19 +67,40 @@ public class ContactData {
 
     @Type(type = "text")
     private String email3;
+
+    @Transient
     private String homepage;
+
+    @Transient
     private String birthday_day;
+
+    @Transient
     private String birthday_month;
+
+    @Transient
     private String birthday_year;
+
+    @Transient
     private String anniversary_day;
+
+    @Transient
     private String anniversary_month;
+
+    @Transient
     private String anniversary_year;
-    private String address2;
+
+    @Transient
     private String phone2;
+
+    @Transient
     private String notes;
+
+    @Transient
     private String allPhones;
+
+    @Expose
+    @Transient
     private String group;
-    private File photo;
 
     @Column (name = "photo")
     @Type(type = "text")
