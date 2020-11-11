@@ -32,8 +32,8 @@ public class ContactModificationTests extends TestBase {
                     withFirstName(contact.getProperty("contact.firstname"))
                     .withLastName(contact.getProperty("contact.lastname"))
                     .withHomePhone(contact.getProperty("contact.homePhone"))
-                    .withEmail(contact.getProperty("contact.email"))
-                    .withGroup(contact.getProperty("contact.group")));
+                    .withEmail(contact.getProperty("contact.email")));
+//                    .withGroup(contact.getProperty("contact.group")));
         }
     }
 
@@ -51,8 +51,8 @@ public class ContactModificationTests extends TestBase {
                 .withFirstName(contact2.getProperty("contact.modfirstname"))
                 .withLastName(contact2.getProperty("contact.modlastname"))
                 .withHomePhone(contact2.getProperty("contact.modhomePhone"))
-                .withEmail(contact2.getProperty("contact.modemail"))
-                .withGroup(contact2.getProperty("contact.modgroup"));
+                .withEmail(contact2.getProperty("contact.modemail"));
+//                .withGroup(contact2.getProperty("contact.modgroup"));
 
         app.contact().modify(contact);
         Contacts after = app.db().contacts();
