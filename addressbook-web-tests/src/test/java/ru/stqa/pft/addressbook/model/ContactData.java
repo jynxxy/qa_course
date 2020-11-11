@@ -3,31 +3,60 @@ package ru.stqa.pft.addressbook.model;
 import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
+import org.checkerframework.checker.units.qual.C;
+import org.hibernate.annotations.Type;
 
+import javax.persistence.*;
 import java.io.File;
 
+@Entity
+@Table (name = "addressbook")
 @XStreamAlias("contact")
 
 public class ContactData {
+
     @XStreamOmitField
+    @Id
+    @Column (name = "id")
     private int id = Integer.MAX_VALUE;
+
     @Expose
+    @Column (name = "firstname")
     private String firstname;
+
     private String middlename;
     @Expose
+    @Column (name = "lastname")
     private String lastname;
     private String nick;
     private String title;
     private String company;
     private String address;
+
+    @Type(type = "text")
+    private String address2;
+
     @Expose
+    @Column (name =  "home")
+    @Type(type = "text")
     private String home;
+
+    @Column (name = "mobile")
+    @Type(type = "text")
     private String mobile;
+
+    @Column (name = "work")
+    @Type(type = "text")
     private String work;
     private String fax;
     @Expose
+    @Type(type = "text")
     private String email;
+
+    @Type(type = "text")
     private String email2;
+
+    @Type(type = "text")
     private String email3;
     private String homepage;
     private String birthday_day;
@@ -43,13 +72,16 @@ public class ContactData {
     private String group;
     private File photo;
 
+    @Column (name = "photo")
+    @Type(type = "text")
+    private String photo;
 
     @Override
     public String toString() {
         return "ContactData{" +
-                "id='" + id + '\'' +
-                ", contactname='" + firstname + '\'' +
-                ", contactsurname='" + lastname + '\'' +
+                "id=" + id +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
                 '}';
     }
 
@@ -126,7 +158,7 @@ public class ContactData {
     }
 
     public File getPhoto() {
-        return photo;
+        return new File(photo);
     }
 
     public String getMiddlename() {
@@ -251,7 +283,7 @@ public class ContactData {
     }
 
     public ContactData withPhoto(File photo) {
-        this.photo = photo;
+        this.photo = photo.getPath();
         return this;
     }
 

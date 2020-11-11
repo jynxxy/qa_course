@@ -20,11 +20,12 @@ public class ContactDeletionTests extends TestBase {
 
         contact = new Properties();
 
-        if (!app.goTo().contactPage()) {
+        if (app.db().contacts().size() == 0) {
+            app.goTo().contactPage();
             app.contact().create(new ContactData().
                     withFirstName(contact.getProperty("contact.firstname"))
-                    .withLastName(contact.getProperty("contact.lastname")).
-                            withHomePhone(contact.getProperty("contact.homePhone"))
+                    .withLastName(contact.getProperty("contact.lastname"))
+                    .withHomePhone(contact.getProperty("contact.homePhone"))
                     .withEmail(contact.getProperty("contact.email"))
                     .withGroup(contact.getProperty("contact.group")));
         }
@@ -32,10 +33,10 @@ public class ContactDeletionTests extends TestBase {
 
     @Test
     public void testContactDeletion() {
-        Contacts before = app.contact().all();
+        Contacts before = app.db().contacts();
         ContactData deletedContact = before.iterator().next();
         app.contact().delete(deletedContact);
-        Contacts after = app.contact().all();
+        Contacts after = app.db().contacts();
         assertEquals(after.size(), before.size() - 1);
         assertThat(after, equalTo(before.without(deletedContact)));
     }
