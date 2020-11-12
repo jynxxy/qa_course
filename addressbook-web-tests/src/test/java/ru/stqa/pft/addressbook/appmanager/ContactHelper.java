@@ -3,9 +3,13 @@ package ru.stqa.pft.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
+import sun.dc.path.FastPathProducer;
 
 import java.util.List;
 
@@ -212,6 +216,19 @@ public class ContactHelper extends HelperBase {
         markCheckbox(contact.getId());
         WebElement add = wd.findElement(By.name("add"));
         add.click();
+        return contact;
+    }
+
+    public ContactData removeFromGroup(ContactData contact) {
+        clickDetails();
+        WebElement test = wd.findElement(By.xpath("//a[contains(@href, './index.php?group=')]"));
+        String nameGroup = test.getText();
+        test.click();
+        markCheckbox(contact.getId());
+        WebElement remove = wd.findElement(By.xpath("//*[@name='remove']"));
+        WebDriverWait wait = new WebDriverWait(wd, 30);
+        wait.until(ExpectedConditions.elementToBeClickable(remove));
+        remove.click();
         return contact;
     }
 }
