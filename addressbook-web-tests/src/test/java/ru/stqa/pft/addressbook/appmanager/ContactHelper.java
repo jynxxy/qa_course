@@ -190,4 +190,28 @@ public class ContactHelper extends HelperBase {
                 .withAddress2(address2).withPhone2(phone2).withNotes(notes);
     }
 
+    public void isContactBelongsToGroup() {
+//        WebElement test = wd.findElement(By.xpath("//div[@id='content']//*[contains(text(), 'Member of:')]"));
+        List<WebElement> member = wd.findElements(By.xpath("//div[@id='content']//*[contains(text(), 'Member of:')]"));
+        if (member.size() == 0) {
+            click(By.linkText("home"));
+        }
+        else {
+            System.out.println("Contact belongs to the group");
+        }
+    }
+
+    private void markCheckbox(int id) {
+        WebElement checkbox = wd.findElement(By.cssSelector(String.format("input[value='%s']", id)));
+        WebElement row = checkbox.findElement(By.xpath("./../.."));
+        List<WebElement> cells = row.findElements(By.tagName("td"));
+        cells.get(0).click();
+    }
+
+    public ContactData addToGroup(ContactData contact) {
+        markCheckbox(contact.getId());
+        WebElement add = wd.findElement(By.name("add"));
+        add.click();
+        return contact;
+    }
 }
