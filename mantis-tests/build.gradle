@@ -10,7 +10,8 @@ dependencies {
     implementation 'org.hamcrest:java-hamcrest:2.0.0.0'
     implementation 'org.apache.httpcomponents:httpcomponents-core:4.4.13'
     implementation 'org.apache.httpcomponents:httpcomponents-client:4.5.13'
-    compile 'org.apache.httpcomponents:httpclient:4.5.13'
+    implementation 'org.apache.httpcomponents:httpclient:4.5.13'
+    implementation 'commons-net:commons-net:3.4'
 }
 
 task testGroups(type: Test) {
@@ -25,17 +26,5 @@ task testGroups(type: Test) {
     }
     if (project.hasProperty('verifyUI')) {
         systemProperty 'verifyUI', "${target}"
-    }
-}
-
-test {
-    useTestNG() {
-        suites 'src/test/resources/testng-contacts.xml'
-    }
-    if (project.hasProperty('browser')) {
-        systemProperty 'browser', "${browser}"
-    }
-    if (project.hasProperty('target')) {
-        systemProperty 'target', "${target}"
     }
 }
