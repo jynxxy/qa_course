@@ -37,14 +37,8 @@ public class ContactHelper extends HelperBase {
         click(By.name("submit"));
     }
 
-    public Contacts selectContactById(int id) {
-        SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
-        Session session = sessionFactory.openSession();
-        session.beginTransaction();
-        Query query = session.createQuery("from ContactData where deprecated = '0000-00-00'");
-        session.getTransaction().commit();
-        session.close();
-        return (Contacts) query.list().get(0);
+    public void selectContactById(int id) {
+        wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
     }
 
     public void deleteContact() {
