@@ -12,17 +12,13 @@ import ru.stqa.pft.mantis.model.MailMessage;
 import javax.mail.MessagingException;
 import java.io.IOException;
 import java.util.List;
-
+import java.util.Optional;
+import java.util.stream.Stream;
 
 
 public class ChangePasswordTests extends TestBase {
 
-    private final Wiser wiser;
 
-    private ChangePasswordTests() {
-        wiser = new Wiser();
-
-    }
 
     @BeforeClass
     public void startMailServer() {
@@ -47,10 +43,10 @@ public class ChangePasswordTests extends TestBase {
         String email = String.format(useremail + now);
 
         Thread.sleep(5000);
-        app.getDriver().findElement(By.cssSelector("input[value='Reset Password']"));
+        app.getDriver().findElement(By.cssSelector("input[value='Reset Password']")).click();
 
-        List<MailMessage> mailMessages = app.mail().waitForMail(1, 10000);
-        String changePasswordLink = findEmailToResetPassword(mailMessages, email);
+        List<MailMessage> mailMessages = app.mail().waitForMail(1, 100000);
+        String changePasswordLink = findEmailToResetPassword(mailMessages, useremail);
 
         app.getDriver().get(changePasswordLink);
         String newpassword = "newpassword";
