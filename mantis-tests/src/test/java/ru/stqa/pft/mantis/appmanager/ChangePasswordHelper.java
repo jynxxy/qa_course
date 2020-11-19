@@ -8,12 +8,24 @@ public class ChangePasswordHelper extends HelperBase {
         super(app);
     }
 
+    public void loginAsAdmin() {
+        app.getDriver().get("http://localhost/mantisbt-1.2.20/login_page.php");
+        app.getDriver().findElement(By.name("username")).sendKeys("administrator");
+        app.getDriver().findElement(By.name("password")).sendKeys("root");
+        app.getDriver().findElement(By.xpath("//input[@class='button']")).click();
+    }
+
+    public void clickManageUsers() {
+        app.getDriver().findElement(By.xpath("//a[contains(text(),'Manage Users')]")).click();
+    }
+
     public void login(String username, String password) {
-        wd.get(app.getProperty("web.baseUrl") + "/login_page.php");
+        app.getDriver().get(app.getProperty("web.baseUrl") + "/login_page.php");
         type(By.name("username"), username);
         type(By.name("password"), password);
         click(By.cssSelector("input[value='Signup']"));
     }
+
 
 
 
