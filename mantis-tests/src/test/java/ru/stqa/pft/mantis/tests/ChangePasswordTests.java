@@ -34,17 +34,23 @@ public class ChangePasswordTests extends TestBase {
 
         String username = app.getDriver().findElement(By.name("username")).getAttribute("value");
         String useremail = app.getDriver().findElement(By.name("email")).getAttribute("value");
-
-
-
-        Thread.sleep(5000);
+        
         app.getDriver().findElement(By.cssSelector("input[value='Reset Password']")).click();
 
         List<MailMessage> mailMessages = app.mail().waitForMail(1, 100000);
         String changePasswordLink = findEmailToResetPassword(mailMessages, useremail);
 
         app.getDriver().get(changePasswordLink);
-        app.changePassword().changePassword();
+        String newpassword = "newpassword";
+        WebElement password = app.getDriver().findElement(By.name("password"));
+        password.sendKeys(newpassword);
+        app.getDriver().findElement(By.name("password_confirm")).sendKeys(newpassword);
+        app.getDriver().findElement(By.cssSelector("input[value='Update User']")).click();
+
+        app.getDriver().get("http://localhost/mantisbt-1.2.20/login_page.php");
+        app.getDriver().findElement(By.name("username")).sendKeys(username);
+        app.getDriver().findElement(By.name("password")).sendKeys(newpassword);
+
     }
 
     private String findEmailToResetPassword(List<MailMessage> mailMessages, String email) {

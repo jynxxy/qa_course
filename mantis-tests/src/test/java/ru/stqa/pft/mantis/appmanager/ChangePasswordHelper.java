@@ -1,7 +1,6 @@
 package ru.stqa.pft.mantis.appmanager;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 
 public class ChangePasswordHelper extends HelperBase {
 
@@ -19,23 +18,5 @@ public class ChangePasswordHelper extends HelperBase {
     public void clickManageUsers() {
         app.getDriver().findElement(By.xpath("//a[contains(text(),'Manage Users')]")).click();
     }
-
-    public void login(String username, String password) {
-        app.getDriver().get(app.getProperty("web.baseUrl") + "/login_page.php");
-        type(By.name("username"), username);
-        type(By.name("password"), password);
-        click(By.cssSelector("input[value='Signup']"));
-    }
-
-    public void changePassword() {
-        String newpassword = "newpassword";
-        WebElement password = app.getDriver().findElement(By.name("password"));
-        password.sendKeys(newpassword);
-        app.getDriver().findElement(By.name("password_confirm")).sendKeys(newpassword);
-        app.getDriver().findElement(By.cssSelector("input[value='Update User']")).click();
-    }
-
-
-
 
 }
