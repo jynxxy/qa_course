@@ -1,6 +1,5 @@
 package ru.stqa.pft.mantis.appmanager;
 
-import javafx.application.Application;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -23,6 +22,7 @@ public class ApplicationManager {
     private FtpHelper ftp;
     private MailHelper mailhelper;
     private ChangePasswordHelper changePasswordHelper;
+    private SoapHelper soapHelper;
 
     public ApplicationManager(String browser) {
         this.browser = browser;
@@ -98,5 +98,12 @@ public class ApplicationManager {
            mailhelper = new MailHelper(this);
        }
        return mailhelper;
+    }
+
+    public SoapHelper soap() {
+        if (soapHelper == null) {
+            soapHelper = new SoapHelper(this);
+        }
+        return soapHelper;
     }
 }
