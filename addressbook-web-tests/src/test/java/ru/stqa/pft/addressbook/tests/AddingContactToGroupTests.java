@@ -57,10 +57,11 @@ public class AddingContactToGroupTests extends TestBase {
         }
 
         GroupData group = groups.iterator().next();
+        String groupName = group.getName();
         int groupId = group.getId();
         groups.removeAll(contact.getGroups());
         app.goTo().goToHomePage();
-        app.contact().addToGroup(contact, group);
+        app.contact().addToGroup(groupName);
 
         app.contact().isContactBelongsToGroup();
         app.contact().addToGroup(contact);

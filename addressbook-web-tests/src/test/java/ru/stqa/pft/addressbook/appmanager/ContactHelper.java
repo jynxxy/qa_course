@@ -61,12 +61,15 @@ public class ContactHelper extends HelperBase {
         click(By.name("remove"));
     }
 
-    public void addToGroup(ContactData contact, GroupData group) {
-        selectContactById(contact.getId());
-        WebElement test = wd.findElement(By.xpath("//*[@name='to_group']"));
-        Select dropdown = new Select(wd.findElement(By.name("to_group")));
-        dropdown.selectByVisibleText(Integer.toString(group.getId()));
+    public void addToGroup(String groupName) {
+        new Select(wd.findElement(By.name("to_group"))).selectByVisibleText(groupName);
         click(By.name("add"));
+
+//        selectContactById(contact.getId());
+//        WebElement test = wd.findElement(By.xpath("//*[@name='to_group']"));
+//        Select dropdown = new Select(wd.findElement(By.name("to_group")));
+//        dropdown.selectByVisibleText(Integer.toString(group.getId()));
+//        click(By.name("add"));
     }
 
     public void returnToHomePage() {
