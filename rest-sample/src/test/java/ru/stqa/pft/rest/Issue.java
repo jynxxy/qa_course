@@ -3,6 +3,7 @@ package ru.stqa.pft.rest;
 public class Issue {
 
     private int id;
+    private String name;
     private String subject;
     private String description;
 
@@ -30,6 +31,15 @@ public class Issue {
 
     public Issue withDescription(String description) {
         this.description = description;
+        return this;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Issue withName(String name) {
+        this.name = name;
         return this;
     }
 
