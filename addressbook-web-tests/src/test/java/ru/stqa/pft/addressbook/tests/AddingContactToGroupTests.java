@@ -1,6 +1,7 @@
 package ru.stqa.pft.addressbook.tests;
 
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.GroupData;
@@ -16,7 +17,7 @@ public class AddingContactToGroupTests extends TestBase {
     private Properties contact;
     private Properties group;
 
-    @BeforeMethod
+    @BeforeTest
     public void ensurePreconditions() throws IOException {
         contact = new Properties();
         String target = System.getProperty("target", "local");
@@ -27,9 +28,14 @@ public class AddingContactToGroupTests extends TestBase {
             app.contact().create(new ContactData().
                     withFirstName(contact.getProperty("contact.firstname"))
                     .withLastName(contact.getProperty("contact.lastname")));
-        } else if (app.db().groups().size() == 0) {
+        }
+
+        if (app.db().groups().size() == 0) {
             app.goTo().groupPage();
-            app.group().create(new GroupData().withName(group.getProperty("group.name")));
+            app.group().create(new GroupData()
+                    .withName(group.getProperty("group.name"))
+                    .withHeader(group.getProperty("group.header"))
+                    .withFooter(group.getProperty("group.footer")));
         }
     }
 
