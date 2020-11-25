@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.GroupData;
 import sun.dc.path.FastPathProducer;
 
 import java.util.List;
@@ -53,6 +54,19 @@ public class ContactHelper extends HelperBase {
 
     public void submitContactModification() {
         click(By.name("update"));
+    }
+
+    public void deleteContactFromGroup(ContactData contact) {
+        selectContactById(contact.getId());
+        click(By.name("remove"));
+    }
+
+    public void addToGroup(ContactData contact, GroupData group) {
+        selectContactById(contact.getId());
+        WebElement test = wd.findElement(By.xpath("//*[@name='to_group']"));
+        Select dropdown = new Select(wd.findElement(By.name("to_group")));
+        dropdown.selectByVisibleText(Integer.toString(group.getId()));
+        click(By.name("add"));
     }
 
     public void returnToHomePage() {

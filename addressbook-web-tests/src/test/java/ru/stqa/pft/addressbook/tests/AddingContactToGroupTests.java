@@ -1,15 +1,20 @@
 package ru.stqa.pft.addressbook.tests;
 
+import org.hamcrest.CoreMatchers;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
+import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupData;
+import ru.stqa.pft.addressbook.model.Groups;
 
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
+
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class AddingContactToGroupTests extends TestBase {
 
@@ -42,9 +47,25 @@ public class AddingContactToGroupTests extends TestBase {
 
     @Test
     public void testAddingContactToGroup() {
-        ContactData contact = app.contact().all().iterator().next();
-        app.contact().clickDetails();
+        app.goTo().goToHomePage();
+        ContactData contact = app.db().contacts().iterator().next();
+        Groups groups = app.db().groups();
+        Contacts contacts = app.db().contacts();
+        app.goTo().insideGroup(groups.iterator().next().getName());
+        if (app.group().isThereContact()) {
+            app.contact().deleteContactFromGroup(contact);
+        }
+
+        GroupData group = groups.iterator().next();
+        int groupId = group.getId();
+        groups.removeAll(contact.getGroups());
+        app.goTo().goToHomePage();
+        app.contact().addToGroup(contact, group);
+
         app.contact().isContactBelongsToGroup();
         app.contact().addToGroup(contact);
+        app.db().refresh(contact);
+
+        assertThat(contact.getGroups(), CoreMatchers.hasItem(group));
     }
 }

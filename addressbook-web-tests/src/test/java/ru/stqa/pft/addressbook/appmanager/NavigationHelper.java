@@ -2,6 +2,7 @@ package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.Select;
 
 public class NavigationHelper extends HelperBase {
 
@@ -31,5 +32,10 @@ public class NavigationHelper extends HelperBase {
 
     public boolean contactPage() {
         return isElementPresent(By.name("selected[]"));
+    }
+
+    public void insideGroup(String groupName) {
+        Select value = new Select(wd.findElement(By.name("group")));
+        value.selectByVisibleText(groupName);
     }
 }
