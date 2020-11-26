@@ -1,9 +1,12 @@
 package ru.stqa.pft.addressbook.tests;
 
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
+import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupData;
+import ru.stqa.pft.addressbook.model.Groups;
 
 import java.io.File;
 import java.io.FileReader;
@@ -26,17 +29,29 @@ public class RemovingContactFromGroupTests extends TestBase {
             app.contact().create(new ContactData().
                     withFirstName(contact.getProperty("contact.firstname"))
                     .withLastName(contact.getProperty("contact.lastname")));
-        } else if (app.db().groups().size() == 0) {
+        }
+
+        if (app.db().groups().size() == 0) {
             app.goTo().groupPage();
-            app.group().create(new GroupData().withName(group.getProperty("group.name")));
+            app.group().create(new GroupData()
+                    .withName(group.getProperty("group.name"))
+                    .withHeader(group.getProperty("group.header"))
+                    .withFooter(group.getProperty("group.footer")));
         }
     }
 
     @Test
-    public void testRemovingContactFromGroup() throws InterruptedException {
+    public void testRemovingContactFromGroup() {
         app.goTo().goToHomePage();
-        ContactData contact = app.contact().all().iterator().next();
-        app.contact().removeFromGroup(contact);
+        Contacts before = app.db().contacts();
+        Groups groups = app.db().groups();
+        ContactData deletedContact = before.iterator().next();
+        GroupData groupFrom = groups.iterator().next();
+        int contactId = deletedContact.getId();
+        String groupName = groupFrom.getName();
+        app.contact().removeFromGroup(groupName, contactId);
+        app.goTo().goToHomePage();
+        Assert.assertEquals(app.contact().count(), before.size()-1);
     }
 
 }

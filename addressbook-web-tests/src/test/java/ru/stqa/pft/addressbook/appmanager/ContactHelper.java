@@ -3,9 +3,7 @@ package ru.stqa.pft.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 
@@ -55,6 +53,12 @@ public class ContactHelper extends HelperBase {
 
     public void deleteContactFromGroup(ContactData contact) {
         selectContactById(contact.getId());
+        click(By.name("remove"));
+    }
+
+    public void removeFromGroup(String groupName, int contactId) {
+        new Select(wd.findElement(By.name("group"))).selectByVisibleText(groupName);
+        wd.findElement(By.xpath(String.format("//input[@id='%s']", contactId))).click();
         click(By.name("remove"));
     }
 
@@ -213,23 +217,4 @@ public class ContactHelper extends HelperBase {
         }
     }
 
-    private void markCheckbox(int id) {
-        WebElement checkbox = wd.findElement(By.cssSelector(String.format("input[value='%s']", id)));
-        WebElement row = checkbox.findElement(By.xpath("./../.."));
-        List<WebElement> cells = row.findElements(By.tagName("td"));
-        cells.get(0).click();
-    }
-
-    public ContactData removeFromGroup(ContactData contact) {
-        clickDetails();
-        WebElement test = wd.findElement(By.xpath("//a[contains(@href, './index.php?group=')]"));
-        String nameGroup = test.getText();
-        test.click();
-        markCheckbox(contact.getId());
-        WebElement remove = wd.findElement(By.xpath("//*[@name='remove']"));
-        WebDriverWait wait = new WebDriverWait(wd, 30);
-        wait.until(ExpectedConditions.elementToBeClickable(remove));
-        remove.click();
-        return contact;
-    }
 }
