@@ -3,14 +3,11 @@ package ru.stqa.pft.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
-import ru.stqa.pft.addressbook.model.GroupData;
-import sun.dc.path.FastPathProducer;
 
 import java.util.List;
 
@@ -64,12 +61,6 @@ public class ContactHelper extends HelperBase {
     public void addToGroup(String groupName) {
         new Select(wd.findElement(By.name("to_group"))).selectByVisibleText(groupName);
         click(By.name("add"));
-
-//        selectContactById(contact.getId());
-//        WebElement test = wd.findElement(By.xpath("//*[@name='to_group']"));
-//        Select dropdown = new Select(wd.findElement(By.name("to_group")));
-//        dropdown.selectByVisibleText(Integer.toString(group.getId()));
-//        click(By.name("add"));
     }
 
     public void returnToHomePage() {
@@ -227,13 +218,6 @@ public class ContactHelper extends HelperBase {
         WebElement row = checkbox.findElement(By.xpath("./../.."));
         List<WebElement> cells = row.findElements(By.tagName("td"));
         cells.get(0).click();
-    }
-
-    public ContactData addToGroup(ContactData contact) {
-        markCheckbox(contact.getId());
-        WebElement add = wd.findElement(By.name("add"));
-        add.click();
-        return contact;
     }
 
     public ContactData removeFromGroup(ContactData contact) {
