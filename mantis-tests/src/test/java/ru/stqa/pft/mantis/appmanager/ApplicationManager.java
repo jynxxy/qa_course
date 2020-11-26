@@ -23,6 +23,7 @@ public class ApplicationManager {
     private FtpHelper ftp;
     private MailHelper mailhelper;
     private ChangePasswordHelper changePasswordHelper;
+    private DbHelper dbHelper;
 
     public ApplicationManager(String browser) {
         this.browser = browser;
@@ -99,4 +100,12 @@ public class ApplicationManager {
        }
        return mailhelper;
     }
+
+    public DbHelper db() {
+        if (dbHelper == null) {
+            dbHelper = new DbHelper(this);
+        }
+        return dbHelper;
+    }
+
 }

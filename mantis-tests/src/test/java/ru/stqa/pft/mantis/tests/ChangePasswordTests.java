@@ -2,15 +2,20 @@ package ru.stqa.pft.mantis.tests;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import ru.lanwen.verbalregex.VerbalExpression;
 import ru.stqa.pft.mantis.model.MailMessage;
+import ru.stqa.pft.mantis.model.UserData;
+import ru.stqa.pft.mantis.model.Users;
 
 import javax.mail.MessagingException;
 import java.io.IOException;
 import java.util.List;
+
+import static org.testng.Assert.assertTrue;
 
 
 public class ChangePasswordTests extends TestBase {
@@ -21,7 +26,13 @@ public class ChangePasswordTests extends TestBase {
     }
 
     @Test
-    public void testChangePasswordByAdmin() throws InterruptedException, IOException, MessagingException {
+    public void testChangePasswordByAdmin() throws IOException, MessagingException, InterruptedException {
+        Users users = app.db().users();
+        UserData selectedContact = users.iterator().next();
+        app.changePassword().loginAsAdmin();
+        app.changePassword().clickManageUsers();
+
+
         app.changePassword().loginAsAdmin();
         app.changePassword().clickManageUsers();
 
@@ -34,7 +45,7 @@ public class ChangePasswordTests extends TestBase {
 
         String username = app.getDriver().findElement(By.name("username")).getAttribute("value");
         String useremail = app.getDriver().findElement(By.name("email")).getAttribute("value");
-        
+
         app.getDriver().findElement(By.cssSelector("input[value='Reset Password']")).click();
 
         List<MailMessage> mailMessages = app.mail().waitForMail(1, 100000);
