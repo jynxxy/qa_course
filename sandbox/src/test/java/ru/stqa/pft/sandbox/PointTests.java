@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 
 public class PointTests {
 
-    @Test
+    @Test (enabled = false)
     public void falseDistanceTest() {
         Point p3 = new Point(5, 7);
         Point p4 = new Point(3, 3);
