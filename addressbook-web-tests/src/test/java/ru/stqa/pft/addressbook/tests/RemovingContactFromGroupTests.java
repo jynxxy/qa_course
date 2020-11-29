@@ -51,7 +51,7 @@ public class RemovingContactFromGroupTests extends TestBase {
         String groupName = groupFrom.getName();
         app.contact().removeFromGroup(groupName, contactId);
         app.goTo().goToHomePage();
-        Assert.assertEquals(app.contact().count(), before.size()-1);
+        Assert.assertEquals(app.contact().countContacts(), before.size()-1);
     }
 
 }
