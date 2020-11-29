@@ -42,9 +42,21 @@ public class DbHelper {
         return new Contacts(result);
     }
 
-    public void refresh(Object o) {
+    public Contacts getContactById(int contactId) {
         Session session = sessionFactory.openSession();
-        session.refresh(o);
+        session.beginTransaction();
+        List<ContactData> result = session.createQuery("from ContactData where id = " + contactId).list();
+        session.getTransaction().commit();
         session.close();
+        return new Contacts(result);
+    }
+
+    public Groups getGroupById(int groupId) {
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        List<GroupData> result = session.createQuery("from GroupData where id = " + groupId).list();
+        session.getTransaction().commit();
+        session.close();
+        return new Groups(result);
     }
 }

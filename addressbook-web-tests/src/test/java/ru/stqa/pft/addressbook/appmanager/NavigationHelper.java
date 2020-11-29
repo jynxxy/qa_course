@@ -34,8 +34,4 @@ public class NavigationHelper extends HelperBase {
         return isElementPresent(By.name("selected[]"));
     }
 
-    public void insideGroup(String groupName) {
-        Select value = new Select(wd.findElement(By.name("group")));
-        value.selectByVisibleText(groupName);
-    }
 }

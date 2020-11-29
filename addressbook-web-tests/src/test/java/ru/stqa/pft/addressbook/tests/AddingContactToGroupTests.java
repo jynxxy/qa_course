@@ -23,52 +23,48 @@ public class AddingContactToGroupTests extends TestBase {
 
     @BeforeTest
     public void ensurePreconditions() throws IOException {
+        Contacts contacts = app.db().contacts();
         contact = new Properties();
         String target = System.getProperty("target", "local");
         contact.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
 
-        if (app.db().contacts().size() == 0) {
-            app.goTo().contactPage();
-            app.contact().create(new ContactData().
-                    withFirstName(contact.getProperty("contact.firstname"))
-                    .withLastName(contact.getProperty("contact.lastname")));
-        }
-
+        app.goTo().groupPage();
         if (app.db().groups().size() == 0) {
-            app.goTo().groupPage();
             app.group().create(new GroupData()
                     .withName(group.getProperty("group.name"))
                     .withHeader(group.getProperty("group.header"))
                     .withFooter(group.getProperty("group.footer")));
+            app.goTo().goToHomePage();
         }
-    }
 
+        if (app.db().contacts().size() == 0) {
+            app.contact().create(new ContactData().
+                    withFirstName(contact.getProperty("contact.firstname"))
+                    .withLastName(contact.getProperty("contact.lastname")));
+            app.goTo().goToHomePage();
+        }
+
+        if (app.contact().findContactWithoutGroup(contacts) == null) {
+            app.contact().create(new ContactData().
+                    withFirstName(contact.getProperty("contact.firstname"))
+                    .withLastName(contact.getProperty("contact.lastname")));
+            app.goTo().goToHomePage();
+        }
+
+    }
 
     @Test
     public void testAddingContactToGroup() {
         app.goTo().goToHomePage();
-        ContactData contact = app.db().contacts().iterator().next();
         Groups groups = app.db().groups();
         Contacts contacts = app.db().contacts();
-        app.goTo().insideGroup(groups.iterator().next().getName());
-        if (app.group().isThereContact()) {
-            app.contact().deleteContactFromGroup(contact);
-        }
+        ContactData contactWithoutGroup = app.contact().findContactWithoutGroup(contacts);
+        int contactId = contactWithoutGroup.getId();
+        GroupData selectedGroup = groups.iterator().next();
+        app.contact().addToGroup(contactWithoutGroup.getId(), selectedGroup.getId());
 
-        GroupData group = groups.iterator().next();
-        String groupName = group.getName();
-        groups.removeAll(contact.getGroups());
-        app.goTo().goToHomePage();
-        app.contact().addToGroup(groupName);
-
-        app.contact().isContactBelongsToGroup();
-        app.contact().addToGroup(groupName);
-        app.db().refresh(contact);
-
-        Groups groups_after = app.db().groups();
-        Contacts contacts_after = app.db().contacts();
-
-        assertThat(groups, CoreMatchers.equalTo(groups_after));
-        assertThat(contacts, CoreMatchers.equalTo(contacts_after));
+        Contacts contacts_after = app.db().getContactById(contactId);
+        ContactData contactWithGroup = contacts_after.iterator().next();
+        assertThat(contactWithGroup, CoreMatchers.equalTo(contactWithoutGroup.inGroup(selectedGroup)));
     }
 }

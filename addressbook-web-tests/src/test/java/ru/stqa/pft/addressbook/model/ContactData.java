@@ -3,7 +3,6 @@ package ru.stqa.pft.addressbook.model;
 import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
-import org.checkerframework.checker.units.qual.C;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
@@ -385,4 +384,10 @@ public class ContactData {
         this.anniversary_year = anniversary_year;
         return this;
     }
+
+    public ContactData inGroup(GroupData group) {
+        groups.add(group);
+        return this;
+    }
+
 }
