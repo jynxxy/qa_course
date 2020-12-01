@@ -26,8 +26,8 @@ public class ContactDeletionTests extends TestBase {
                     withFirstName(contact.getProperty("contact.firstname"))
                     .withLastName(contact.getProperty("contact.lastname"))
                     .withHomePhone(contact.getProperty("contact.homePhone"))
-                    .withEmail(contact.getProperty("contact.email"))
-                    .withGroup(contact.getProperty("contact.group")));
+                    .withEmail(contact.getProperty("contact.email")));
+//                    .withGroup(contact.getProperty("contact.group")));
         }
     }
 

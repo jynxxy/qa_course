@@ -83,6 +83,10 @@ public class GroupHelper extends HelperBase {
         returnToGroupPage();
     }
 
+    public boolean isThereContact() {
+        return isElementPresent(By.name("selected[]"));
+    }
+
     public boolean isThereAGroup() {
         return isElementPresent(By.name("selected[]"));
     }

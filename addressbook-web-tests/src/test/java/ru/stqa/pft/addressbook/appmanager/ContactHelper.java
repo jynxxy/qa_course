@@ -10,8 +10,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.util.List;
+import java.util.Set;
 
 public class ContactHelper extends HelperBase {
 
@@ -41,6 +43,10 @@ public class ContactHelper extends HelperBase {
         wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
     }
 
+    public void selectGroupById(int groupId) {
+        click(By.xpath("(//select[@name='to_group']/option[@value='" + groupId + "'])"));
+    }
+
     public void deleteContact() {
         click(By.xpath("//input[@value='Delete']"));
         wd.switchTo().alert().accept();
@@ -55,12 +61,36 @@ public class ContactHelper extends HelperBase {
         click(By.name("update"));
     }
 
+    public void clickRemove() {
+        click(By.name("remove"));
+    }
+
+    public void removeFromGroup(int contactId, int groupId) {
+        filterByGroup(groupId);
+        selectContactById(contactId);
+        clickRemove();
+    }
+
+    public void filterByGroup(int groupId) {
+        click(By.xpath("(//select[@name='group']/option[@value='" + groupId + "'])"));
+    }
+
+    public void addToGroup(int contactId, int groupId) {
+        selectContactById(contactId);
+        selectGroupById(groupId);
+        clickAddButton();
+    }
+
     public void returnToHomePage() {
         click(By.xpath("//a[contains(text(),'home')]"));
     }
 
     public void clickAddNew() {
         click(By.xpath("//a[contains(text(),'add new')]"));
+    }
+
+    public void clickAddButton() {
+        click(By.xpath("(//input[@name='add'])"));
     }
 
     public void clickDetails() {
@@ -88,7 +118,7 @@ public class ContactHelper extends HelperBase {
         returnToHomePage();
     }
 
-    public int getContactCount() {
+    public int countContacts() {
         return wd.findElements(By.name("selected[]")).size();
     }
 
@@ -192,6 +222,26 @@ public class ContactHelper extends HelperBase {
                 .withAnniversary_day(anniversary_day).withAnniversary_month(anniversary_month)
                 .withAnniversary_year(anniversary_year)
                 .withAddress2(address2).withPhone2(phone2).withNotes(notes);
+    }
+
+    public ContactData findContactWithoutGroup (Contacts contacts) {
+        for (ContactData contact : contacts) {
+            Set<GroupData> contactInGroup = contact.getGroups();
+            if (contactInGroup.size() == 0) {
+                return contact;
+            }
+        }
+        return null;
+    }
+
+    public ContactData findContactWithGroup (Contacts contacts) {
+        for (ContactData contact : contacts) {
+            Set<GroupData> contactInGroup = contact.getGroups();
+            if (contactInGroup.size() > 0) {
+                return contact;
+            }
+        }
+        return null;
     }
 
 }
