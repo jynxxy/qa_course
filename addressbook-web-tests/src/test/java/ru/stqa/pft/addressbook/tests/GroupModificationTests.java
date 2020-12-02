@@ -45,9 +45,9 @@ public class GroupModificationTests extends TestBase {
                 .withFooter(group2.getProperty("group.modfooter"));
         app.goTo().groupPage();
         app.group().modify(group);
-        Groups after = app.db().groups();
+        Groups after = app.group().all();
         assertThat(app.group().count(), equalTo(before.size()));
-//        assertThat(after, equalTo(before.without(modifiedGroup).withAdded(group)));
+        assertThat(after, equalTo(before.without(modifiedGroup).withAdded(group)));
         verifyGroupListInUI();
     }
 
